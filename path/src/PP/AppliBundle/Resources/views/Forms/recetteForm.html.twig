@@ -84,26 +84,24 @@
 				{{ form_errors(form.rctTempsRepos) }}
 				{{ form_label(form.rctTempsRepos) }}
 				{{ form_widget(form.rctTempsRepos, {attr: {class: 'form-control'}}) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.ingredients) }}
-				{{ form_errors(form.ingredients) }}
-				{{ form_widget(form.ingredients, {attr: {class: 'form-control'}}) }}
-				<br />
-				<a class="btn btn-success" data-toggle="modal" data-target="#gererIngredients">Gestion des ingrédients</a>
-			</div>
-		
+			</div>		
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-3">
-			
+		<div class="col-md-12">
+			<a class="btn btn-primary" href="">Créer un ingrédient</a><a class="btn btn-primary" href="">Créer une unité</a>
 		</div>
-		<div class="col-md-5">
-			
+	</div>
+
+	<div class="row">
+		
+		<div class="form-group">
+			{{ form_label(form.ingredients) }}
+			{{ form_errors(form.ingredients) }}
+			{{ form_widget(form.ingredients) }}
 		</div>
+
 	</div>
 
 	<input class="btn btn-primary" type="submit" value="Enregistrer"/>

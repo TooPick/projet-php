@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use PP\AppliBundle\Entity\Categorie;
 use PP\AppliBundle\Entity\Ingredient;
+use PP\AppliBundle\Form\IngredientUniteType;
 
 class RecetteType extends AbstractType
 {
@@ -45,12 +46,10 @@ class RecetteType extends AbstractType
               'property' => 'catLabel',
               'label'		=> 'Catégorie de la recette :'
             ))
-            ->add('ingredients', 'entity', array(
-              'class'          => 'PPAppliBundle:IngredientUnite',
-              'property'     => 'ingredient',
-              'multiple'  => true,
-              'label'         => 'Gestion des ingrédients :',
-              'required'  => false
+            ->add('ingredients', 'collection', array(
+              'type'          => new IngredientUniteType(),
+              'allow_add'     => true,
+              'allow_delete'  => true
             ))
         ;
     }

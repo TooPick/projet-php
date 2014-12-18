@@ -15,7 +15,6 @@ class IngredientUniteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantite', NULL, array('required' => false, 'label' => 'Quantite :', 'attr' => array('class' => 'form-control')))
             ->add('ingredient', 'entity', array(
               'class'    => 'PPAppliBundle:Ingredient',
               'property' => 'igdLabel',
@@ -26,6 +25,7 @@ class IngredientUniteType extends AbstractType
               'property' => 'uniLabel',
               'label'       => 'Unité :'
             ))
+            ->add('quantite', NULL, array('required' => false, 'label' => 'Quantite :', 'attr' => array('class' => 'form-control')))
         ;
     }
     

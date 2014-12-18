@@ -113,7 +113,7 @@ class Recette
 	private $utilisateur;
 
     /** 
-     * @ORM\ManyToMany(targetEntity="PP\AppliBundle\Entity\IngredientUnite", cascade="remove")
+     * @ORM\ManyToMany(targetEntity="PP\AppliBundle\Entity\IngredientUnite", cascade="persist")
      */
     private $ingredients;
 	
@@ -433,37 +433,4 @@ class Recette
         return $this->utilisateur;
     }
     
-
-    /**
-     * Add ingredients
-     *
-     * @param \PP\AppliBundle\Entity\IngredientUnite $ingredients
-     * @return Recette
-     */
-    public function addIngredient(\PP\AppliBundle\Entity\IngredientUnite $ingredients)
-    {
-        $this->ingredients[] = $ingredients;
-
-        return $this;
-    }
-
-    /**
-     * Remove ingredients
-     *
-     * @param \PP\AppliBundle\Entity\IngredientUnite $ingredients
-     */
-    public function removeIngredient(\PP\AppliBundle\Entity\IngredientUnite $ingredients)
-    {
-        $this->ingredients->removeElement($ingredients);
-    }
-
-    /**
-     * Get ingredients
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIngredients()
-    {
-        return $this->ingredients;
-    }
 }

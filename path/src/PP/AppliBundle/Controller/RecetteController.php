@@ -119,8 +119,19 @@ class RecetteController extends Controller
 				$em->persist($ingredient);
 				$em->flush();
 
-				$url = $this->generateUrl('pp_user_profil');
-				return $this->redirect($url);
+				$repository = $em->getRepository('PPAppliBundle:Ingredient');
+
+				$ingredients = $repository->findAll();
+
+				$list = array();
+				foreach ($ingredients as $ing) {
+					$list[] = $ing->getId();
+				}
+
+				$response = new Response(json_encode($list));
+				//$response->headers->set('Content-Type', 'application/json');
+
+				return $response;
 			}
 		}
 	}
