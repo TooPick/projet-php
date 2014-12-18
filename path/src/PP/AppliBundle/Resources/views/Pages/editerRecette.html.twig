@@ -1,0 +1,9 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Editer la recette</h3>
+	<a href="{{ path('pp_user_profil') }}">Retour au profil.</a>
+	<hr>
+	
+	{% include "PPAppliBundle:Forms:recetteForm.html.twig" %}
+{% endblock %}

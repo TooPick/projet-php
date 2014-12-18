@@ -1,0 +1,185 @@
+{{ form_start(form) }}
+	{{ form_errors(form) }}
+	
+	<div class="row">
+		<div class="col-md-8">
+		
+			<div class="form-group">
+				{{ form_errors(form.rctTitre) }}
+				{{ form_label(form.rctTitre) }}
+				{{ form_widget(form.rctTitre, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.rctDescription) }}
+				{{ form_label(form.rctDescription) }}
+				{{ form_widget(form.rctDescription, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="row">
+			
+				<div class="col-md-6">
+				
+					<div class="form-group">
+						{{ form_errors(form.rctDifficulte) }}
+						{{ form_label(form.rctDifficulte) }}
+						{{ form_widget(form.rctDifficulte, {attr: {class: 'form-control'}}) }}
+					</div>
+					
+					<div class="form-group">
+						{{ form_errors(form.rctCout) }}
+						{{ form_label(form.rctCout) }}
+						{{ form_widget(form.rctCout, {attr: {class: 'form-control'}}) }}
+					</div>
+				
+				</div>
+				
+				<div class="col-md-6">
+				
+					<div class="form-group">
+						{{ form_errors(form.rctIllustration) }}
+						{{ form_label(form.rctIllustration) }}
+						{{ form_widget(form.rctIllustration, {attr: {class: 'form-control'}}) }}
+					</div>
+					
+					<div class="form-group">
+						{{ form_errors(form.rctNbpersonne) }}
+						{{ form_label(form.rctNbpersonne) }}
+						{{ form_widget(form.rctNbpersonne, {attr: {class: 'form-control'}}) }}
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.categorie) }}
+				{{ form_label(form.categorie) }}
+				{{ form_widget(form.categorie, {attr: {class: 'form-control'}}) }}
+			</div>
+		
+		</div>
+		
+		<div class="col-md-4">
+		
+			<div class="form-group">
+				{{ form_errors(form.rctStatut) }}
+				{{ form_label(form.rctStatut) }}
+				{{ form_widget(form.rctStatut, {attr: {class: 'form-control'}}) }}
+			</div>
+		
+			<div class="form-group">
+				{{ form_errors(form.rctTempsPreparation) }}
+				{{ form_label(form.rctTempsPreparation) }}
+				{{ form_widget(form.rctTempsPreparation, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.rctTempsCuisson) }}
+				{{ form_label(form.rctTempsCuisson) }}
+				{{ form_widget(form.rctTempsCuisson, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.rctTempsRepos) }}
+				{{ form_label(form.rctTempsRepos) }}
+				{{ form_widget(form.rctTempsRepos, {attr: {class: 'form-control'}}) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.ingredients) }}
+				{{ form_errors(form.ingredients) }}
+				{{ form_widget(form.ingredients, {attr: {class: 'form-control'}}) }}
+				<br />
+				<a class="btn btn-success" data-toggle="modal" data-target="#gererIngredients">Gestion des ingrédients</a>
+			</div>
+		
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+			
+		</div>
+		<div class="col-md-5">
+			
+		</div>
+	</div>
+
+	<input class="btn btn-primary" type="submit" value="Enregistrer"/>
+{{ form_end(form) }}
+
+<div class="modal fade" id="ingredientModal" tabindex="-1" role="dialog" aria-labelledby="ingredientModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span> <span class="sr-only">Fermer</span></button>
+				<h4 class="modal-title" id="ingredientModalLabel">Ajouter un ingrédient</h4>
+			</div>
+
+			<div class="modal-body">
+				{{ form(ingredientForm) }}
+				<br />
+				<div class="text-right">
+					<button class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<input type="submit" class="btn btn-success" data-loading-text="Patientez..." id="submitIngredient" value="Ajouter" />
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="uniteModal" tabindex="-1" role="dialog" aria-labelledby="uniteModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span> <span class="sr-only">Fermer</span></button>
+				<h4 class="modal-title" id="uniteModalLabel">Ajouter une unité</h4>
+			</div>
+
+			<div class="modal-body">
+				{{ form(uniteForm) }}
+				<br />
+				<div class="text-right">
+					<button class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<input type="submit" class="btn btn-success" data-loading-text="Patientez..." id="submitIngredient" value="Ajouter" />
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="gererIngredients" tabindex="-1" role="dialog" aria-labelledby="gererIngredientsLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span> <span class="sr-only">Fermer</span></button>
+				<h4 class="modal-title" id="gererIngredientsLabel">Gestion des ingredients</h4>
+			</div>
+
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-6">
+						<a id="ajouterIngredient" class="btn btn-primary" data-toggle="modal" data-target="#ingredientModal">Ajouter un ingrédient</a>
+					</div>
+					<div class="col-md-6">
+						<a id="ajouterUnite" class="btn btn-primary" data-toggle="modal" data-target="#uniteModal">Ajouter une unité</a>
+					</div>
+					{{ form(ing_uniForm) }}
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button class="btn btn-default" data-dismiss="modal">Fermer</button>
+			</div>
+		</div>
+	</div>
+</div>

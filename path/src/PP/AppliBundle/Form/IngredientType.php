@@ -1,0 +1,41 @@
+<?php
+
+namespace PP\AppliBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class IngredientType extends AbstractType
+{
+        /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('igdLabel', NULL, array('label' => 'Nom :', 'attr' => array('class' => 'form-control')))
+            ->add('igdDescription', NULL, array('label' => 'Description :', 'attr' => array('class' => 'form-control')))
+            ->add('igdIllustration', NULL, array('label' => 'Illustration :', 'attr' => array('class' => 'form-control')))
+        ;
+    }
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'PP\AppliBundle\Entity\Ingredient'
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'pp_applibundle_ingredient';
+    }
+}

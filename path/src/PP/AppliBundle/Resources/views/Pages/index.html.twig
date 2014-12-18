@@ -1,0 +1,63 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+	
+	{% else %}
+		<div class="jumbotron">
+			<h1>Bienvenue sur Cuis'In !</h1>
+			<p>Pour profiter pleinement des fontionnalités du site veuillez vous authentifier.</p>
+			<div class="text-right">
+				<p><a href="{{ path('inscription') }}" class="btn btn-primary">Inscription</a> <a href="{{ path('login') }}" class="btn btn-primary">Connexion</a></p>
+			</div>
+		</div>
+	{% endif %}
+	
+	<h3>Nouveautés</h3>
+	<hr>
+	<div class="row">
+		{% for recette in recettes|slice(0,3) %}
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="http://placehold.it/350x300"></a>
+					<div class="text-center caption">
+						<h4><a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}">{{ recette.rctTitre }}</a></h4>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="text-center">
+		<a href="{{ path('pp_appli_nouveautes') }}" class="btn btn-primary">Voir plus</a>
+	</div>
+	
+	<h3>Populaires</h3>
+	<hr>
+	
+	
+	
+	
+	
+	<div class="row">
+		{% for recette in recettes|slice(0,3) %}
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="http://placehold.it/350x300""></a>
+					<div class="text-center caption">
+						<h4><a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}">{{ recette.rctTitre }}</a></h4>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<div class="text-center">
+			<a href="" class="btn btn-primary">Voir plus</a>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+{% endblock %}

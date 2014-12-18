@@ -1,0 +1,7 @@
+parameters:
+#    pp_admin.example.class: PP\AdminBundle\Example
+
+services:
+#    pp_admin.example:
+#        class: %pp_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,37 @@
+pp_admin_homepage:
+    path:     /
+    defaults: { _controller: PPAdminBundle:Admin:index }
+
+pp_admin_recettesAttente:
+    path:    /recettesAttente
+    defaults: { _controller: PPAdminBundle:Admin:recettesAttente }
+
+pp_admin_editerRecette:
+    path:    /editerRecette/{id}
+    defaults: { _controller: PPAdminBundle:Admin:editerRecette }
+    requirements:
+        id:    \d+
+
+pp_admin_listeUtilisateurs:
+    path:    /listeUtilisateurs/{utilisateur}
+    defaults: { _controller: PPAdminBundle:Admin:listeUtilisateurs, utilisateur: "" }
+
+pp_admin_editerUtilisateur:
+    path:    /editerUtilisateur/{id}
+    defaults: { _controller: PPAdminBundle:Admin:editerUtilisateur }
+    requirements:
+        id:    \d+
+
+pp_admin_listeRecettesUtilisateur:
+    path:    /listeRecettesUtilisateur/{id}
+    defaults: { _controller: PPAdminBundle:Admin:listeRecettesUtilisateur }
+    requirements:
+        id:    \d+
+
+pp_admin_listeRecettes:
+    path:    /listeRecettes/{recette}
+    defaults: { _controller: PPAdminBundle:Admin:listeRecettes, recette: "" }
+
+pp_admin_ingredientsAttente:
+    path:    /ingredients/attente
+    defaults: { _controller: PPAdminBundle:Admin:ingredientsAttente }

@@ -1,3 +1,25 @@
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation
+pp_admin:
+    resource: "@PPAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+pp_user:
+    resource: "@PPUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+pp_appli:
+    resource: "@PPAppliBundle/Resources/config/routing.yml"
+    prefix:   /
+
+login:
+    pattern:    /login
+    defaults: { _controller: PPUserBundle:User:login }
+
+login_check:
+    pattern:    /login_check
+
+logout:
+    pattern:    /logout
+
+inscription:
+    pattern:    /inscription
+    defaults: { _controller: PPUserBundle:User:inscription }

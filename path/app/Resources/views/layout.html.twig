@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}Cuis'In{% endblock %}</title>
+        {% stylesheets filter='cssrewrite'
+			'bundles/ppappli/css/bootstrap.css'
+		%}
+			<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+		
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+		<div class="container">
+			<div class="row">
+				{% include "::layout_entete.html.twig" %}
+			</div>
+		
+			<div class="row">
+				<div class="col-md-3">
+					<header>
+						{% include "::nav.html.twig" %}
+					</header>
+				</div>
+		
+				<div class="col-md-9">
+					{% block body %}{% endblock %}
+				</div>
+			</div>
+			
+			<div class="row">
+				<footer>
+					<hr>
+					{% include "::layout_pied.html.twig" %}
+				</footer>
+			</div>
+		</div>
+    </body>
+	{% javascripts 
+		'@PPAppliBundle/Resources/public/js/jquery-1.11.1.min.js' 
+		'@PPAppliBundle/Resources/public/js/bootstrap.min.js'
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	
+	{% block javascripts %}
+	
+	{% endblock %}
+</html>

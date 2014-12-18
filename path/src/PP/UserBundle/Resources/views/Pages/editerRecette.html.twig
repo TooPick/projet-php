@@ -1,0 +1,43 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Ajouter une recette</h3>
+	<a href="{{ path('pp_user_profil') }}">Retour au profil.</a>
+	<hr>
+	
+	{% include "PPUserBundle:Forms:recetteForm.html.twig" %}
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		$(document).ready(function () {
+			$("input#submitIngredient").click(function(){
+				var btn = $(this);
+    			btn.button('loading');
+				$.ajax({
+					type: "POST",
+					url: "{{ path('pp_user_editRecette', {id:recette.id}) }}",
+					data: $('form').serialize(),
+					success: function(){
+						btn.button('reset');
+						$("#ingredientModal form")[0].reset();
+						$("#ingredientModal").modal('hide');
+						$("#gererIngredients").modal('show');
+					},
+					error: function(){
+						alert("Echec de l'ajout !");
+						btn.button('reset');
+					}
+				});
+			});
+
+			$("#ajouterIngredient").click(function(){
+				$("#gererIngredients").modal('hide');
+			});
+
+			$("#ajouterUnite").click(function(){
+				$("#gererIngredients").modal('hide');
+			});
+		});
+    </script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	{% if idCat == 0 %}
+		<h2>Liste des catégories</h2>
+		<hr>
+		<div class="row">
+			{% for categorie in categories %}
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="{{ path('pp_appli_recetteListe', {'idCat':categorie.id}) }}"><img src="{{ asset('bundles/ppappli/images/categories') }}/{{ categorie.catIllustration }}" /></a>
+						<div class="caption">
+							<a href="{{ path('pp_appli_recetteListe', {'idCat':categorie.id}) }}"><h3 class="text-center">{{ categorie.catLabel }}</h3></a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% else %}
+		<h2>Liste des recettes</h2>
+		<hr>
+		<h3>{{ categories.catLabel }}</h3>
+		<a href="{{ path('pp_appli_recetteListe') }}">Retour à la liste des catégories</a>
+		<table>
+			{% for recette in recettes %}
+				<tr>
+					<td><a href="{{ path('pp_appli_recetteDetail', {'id':recette.id}) }}"><h3>{{ recette.rctTitre }}</h3></a></td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+	
+{% endblock %}

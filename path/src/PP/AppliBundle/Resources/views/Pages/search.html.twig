@@ -1,0 +1,14 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h2>Resultat de la recherche : {{ search }}</h2>
+	<hr>
+	<table>
+		{% for ligne in result %}
+			<tr>
+				<td><a href="{{ path('pp_appli_recetteDetail', {id:ligne.id}) }}">{{ ligne.rctTitre }}</a></td>
+			</tr>
+		{% endfor %}
+	</table>
+	
+{% endblock %}

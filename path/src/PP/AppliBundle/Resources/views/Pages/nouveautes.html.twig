@@ -1,0 +1,36 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Nouveautés</h3>
+	<hr>
+	{% for recette in recettes|slice((page*9)-9, page*9) %}
+		{% if loop.first %}
+			<div class="row">
+		{% endif %}
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="http://placehold.it/350x300"></a>
+					<h3 class="text-center"><a href="">{{ recette.rctTitre }}</a></h3>
+				</div>
+			</div>
+		{% if loop.last %}
+			</div>
+		{% else %}
+			{% if loop.index%3 == 0 %}
+				</div>
+				<div class="row">
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+	<div class="row">
+		<div class="text-center">
+			<ul class="pagination">
+				<li><a href="{{ path('pp_appli_nouveautes', {page: page-1}) }}">&laquo;</a></li>
+				{% for i in 1..nombrePages %}
+					<li {% if page == i %}class="active"{% endif %}><a href="{{ path('pp_appli_nouveautes', {page: i}) }}">{{ i }}</a></li>
+				{% endfor %}
+				<li><a href="{{ path('pp_appli_nouveautes', {page: page+1}) }}">&raquo;</a></li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}

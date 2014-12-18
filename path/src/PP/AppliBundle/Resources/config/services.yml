@@ -1,0 +1,7 @@
+parameters:
+#    pp_appli.example.class: PP\AppliBundle\Example
+
+services:
+#    pp_appli.example:
+#        class: %pp_appli.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

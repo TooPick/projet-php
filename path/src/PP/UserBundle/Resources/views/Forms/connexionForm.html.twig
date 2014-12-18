@@ -1,0 +1,23 @@
+<form action="{{ path('login_check') }}" method="POST">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-1">
+			<div class="form-group">
+				<label for="_username">Login :</label>
+				<input class="form-control" type="text" name="_username" value="{{ last_username }}"/>
+			</div>
+		</div>
+
+		<div class="col-md-5">
+			<div class="form-group">
+				<label for="password">Mot de passe :</label>
+				<input class="form-control" type="password" name="_password" />
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="text-center">
+			<input class="btn btn-primary" type="submit" value="Connexion" />
+		</div>
+	</div>
+</form>
