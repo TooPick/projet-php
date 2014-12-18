@@ -2,36 +2,72 @@ pp_admin_homepage:
     path:     /
     defaults: { _controller: PPAdminBundle:Admin:index }
 
-pp_admin_recettesAttente:
-    path:    /recettesAttente
-    defaults: { _controller: PPAdminBundle:Admin:recettesAttente }
-
-pp_admin_editerRecette:
-    path:    /editerRecette/{id}
-    defaults: { _controller: PPAdminBundle:Admin:editerRecette }
-    requirements:
-        id:    \d+
-
 pp_admin_listeUtilisateurs:
-    path:    /listeUtilisateurs/{utilisateur}
-    defaults: { _controller: PPAdminBundle:Admin:listeUtilisateurs, utilisateur: "" }
+    path:    /utilisateur/liste/{utilisateur}
+    defaults: { _controller: PPAdminBundle:Utilisateur:liste, utilisateur: "" }
 
 pp_admin_editerUtilisateur:
-    path:    /editerUtilisateur/{id}
-    defaults: { _controller: PPAdminBundle:Admin:editerUtilisateur }
+    path:    /utilisateur/edit/{id}
+    defaults: { _controller: PPAdminBundle:Utilisateur:edit }
     requirements:
         id:    \d+
 
 pp_admin_listeRecettesUtilisateur:
-    path:    /listeRecettesUtilisateur/{id}
-    defaults: { _controller: PPAdminBundle:Admin:listeRecettesUtilisateur }
+    path:    /utilisateur/recettes/{id}
+    defaults: { _controller: PPAdminBundle:Utilisateur:recettesUtilisateur }
+    requirements:
+        id:    \d+
+
+pp_admin_recettesAttente:
+    path:    /recette/attente
+    defaults: { _controller: PPAdminBundle:Recette:attente }
+
+pp_admin_editerRecette:
+    path:    /recette/edit/{id}
+    defaults: { _controller: PPAdminBundle:Recette:edit }
     requirements:
         id:    \d+
 
 pp_admin_listeRecettes:
-    path:    /listeRecettes/{recette}
-    defaults: { _controller: PPAdminBundle:Admin:listeRecettes, recette: "" }
+    path:    /recette/liste/{recette}
+    defaults: { _controller: PPAdminBundle:Recette:liste, recette: "" }
 
 pp_admin_ingredientsAttente:
-    path:    /ingredients/attente
-    defaults: { _controller: PPAdminBundle:Admin:ingredientsAttente }
+    path:    /ingredient/attente
+    defaults: { _controller: PPAdminBundle:Ingredient:ingredientAttente }
+
+pp_admin_ingredientsListe:
+    path:    /ingredient/liste
+    defaults: { _controller: PPAdminBundle:Ingredient:liste }
+
+pp_admin_editIngredient:
+    path:    /ingredient/edit/{id}
+    defaults: { _controller: PPAdminBundle:Ingredient:editIngredient }
+    requirements:
+        id:    \d+
+
+pp_admin_supprIngredient:
+    path:    /ingredient/suppr/{id}
+    defaults: { _controller: PPAdminBundle:Ingredient:suppr }
+    requirements:
+        id:    \d+
+
+pp_admin_unitesAttente:
+    path:    /unite/attente
+    defaults: { _controller: PPAdminBundle:Unite:attente }
+
+pp_admin_unitesListe:
+    path:    /unite/liste
+    defaults: { _controller: PPAdminBundle:Unite:liste }
+
+pp_admin_editUnite:
+    path:    /unite/edit/{id}
+    defaults: { _controller: PPAdminBundle:Unite:edit }
+    requirements:
+        id:    \d+
+
+pp_admin_supprUnite:
+    path:    /unite/suppr/{id}
+    defaults: { _controller: PPAdminBundle:Unite:suppr }
+    requirements:
+        id:    \d+

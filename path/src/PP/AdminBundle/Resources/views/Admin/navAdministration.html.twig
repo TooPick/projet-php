@@ -1,14 +1,22 @@
 <h3>Administration</h3>
 <ul class="nav nav-tabs nav-justified">
-	<li {% if app.request.get('_route') == "pp_admin_homepage" %}class="active"{% endif %}><a href="{{ path('pp_admin_homepage') }}">Accueil</a></li>
-	<li {% if app.request.get('_route') == "pp_admin_recettesAttente" %}class="active"{% endif %}><a href="{{ path('pp_admin_recettesAttente') }}">Recettes en attente</a></li>
-	<li {% if app.request.get('_route') == "pp_admin_listeRecettes" %}class="active"{% endif %}><a href="{{ path('pp_admin_listeRecettes') }}">Liste des recettes</a></li>
-	<li {% if app.request.get('_route') == "pp_admin_listeUtilisateurs" %}class="active"{% endif %}><a href="{{ path('pp_admin_listeUtilisateurs') }}">Liste des utilisateurs</a></li>
+	<li><a href="{{ path('pp_admin_homepage') }}">Accueil</a></li>
+	<li><a href="{{ path('pp_admin_listeUtilisateurs') }}">Liste des utilisateurs</a></li>
 	<li class="dropdown">
-		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Ingrédients<span class="caret"></span></a>
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Recettes<span class="caret"></span></a>
 		<ul class="dropdown-menu">
-		  <li><a href="">Ingrédients en attente</a></li>
-		  <li><a href="">Liste des ingrédients</a></li>
+			<li><a href="{{ path('pp_admin_recettesAttente') }}">Recettes en attente</a></li>
+			<li><a href="{{ path('pp_admin_listeRecettes') }}">Liste des recettes</a></li>
+		</ul>
+	</li>
+	<li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Ingrédients/Unités<span class="caret"></span></a>
+		<ul class="dropdown-menu">
+		  <li><a href="{{ path('pp_admin_ingredientsAttente') }}">Ingrédients en attente</a></li>
+		  <li><a href="{{ path('pp_admin_ingredientsListe') }}">Liste des ingrédients</a></li>
+		  <li class="divider"></li>
+		  <li><a href="{{ path('pp_admin_unitesAttente') }}">Unités en attente</a></li>
+		  <li><a href="{{ path('pp_admin_unitesListe') }}">Liste des unités</a></li>
 		</ul>
 	</li>
 </ul>

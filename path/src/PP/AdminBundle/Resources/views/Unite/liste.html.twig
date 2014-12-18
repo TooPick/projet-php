@@ -1,0 +1,37 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	{% include "PPAdminBundle:Admin:navAdministration.html.twig" %}
+	<h3>Liste des unités</h3>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Etat</th>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Illustration</th>
+				<th>Utilisateur</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{% for unite in unites %}
+				<tr>
+					<td>{% if unite.uniValide == 1 %}Validé{% else %}En attente{% endif %}</td>
+					<td>{{ unite.uniLabel }}</td>
+					<td>{{ unite.uniShortLabel }}</td>
+					<td>{{ unite.uniDescription }}</td>
+					<td>{{ unite.utilisateur.username }}</td>
+					<td><a class="btn btn-primary" href="{{ path('pp_admin_editUnite', {id: unite.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editer</a> <a class="btn btn-danger" data-toggle="modal" data-target="#modalSuppression" data-path="{{ path('pp_admin_supprUnite', {id:unite.id}) }}">Supprimer</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{% include "PPAdminBundle:Unite:modal.html.twig" %}
+	{% block javascripts %}
+		{% include "PPAdminBundle:Unite:modalJs.html.twig" %}
+	{% endblock %}
+
+{% endblock %}

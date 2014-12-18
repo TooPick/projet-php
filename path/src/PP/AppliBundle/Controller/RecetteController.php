@@ -43,7 +43,7 @@ class RecetteController extends Controller
 				$em->persist($recette);
 				$em->flush();
 				
-				$url = $this->generateUrl('pp_user_profil');
+				$url = $this->generateUrl('pp_appli_editRecette', array('id' => $recette->getId()));
 				return $this->redirect($url);
 			}
 		}
@@ -60,9 +60,6 @@ class RecetteController extends Controller
 
 		$unite = new Unite();
 		$uniteForm = $this->createForm(new UniteType, $unite);
-
-		$ing_uni = new IngredientUnite();
-		$ing_uniForm = $this->createForm(new IngredientUniteType, $ing_uni);
 		
 		$user = $this->getUser();
 		
@@ -82,12 +79,12 @@ class RecetteController extends Controller
 				$em->persist($recette);
 				$em->flush();
 				
-				$url = $this->generateUrl('pp_user_profil');
+				$url = $this->generateUrl('pp_appli_editRecette', array('id' => $recette->getId()));
 				return $this->redirect($url);
 			}
 		}
 		
-		return $this->render('PPAppliBundle:Recette:editerRecette.html.twig', array('form' => $form->createView(), 'ingredientForm' => $ingredientForm->createView(), 'uniteForm' => $uniteForm->createView(), 'ing_uniForm' => $ing_uniForm->createView(), 'recette' => $recette));
+		return $this->render('PPAppliBundle:Recette:editerRecette.html.twig', array('form' => $form->createView(), 'ingredientForm' => $ingredientForm->createView(), 'uniteForm' => $uniteForm->createView(), 'recette' => $recette));
 	}
 
 	public function supprimerRecetteAction(Recette $recette = NULL)
@@ -119,19 +116,8 @@ class RecetteController extends Controller
 				$em->persist($ingredient);
 				$em->flush();
 
-				$repository = $em->getRepository('PPAppliBundle:Ingredient');
-
-				$ingredients = $repository->findAll();
-
-				$list = array();
-				foreach ($ingredients as $ing) {
-					$list[] = $ing->getId();
-				}
-
-				$response = new Response(json_encode($list));
-				//$response->headers->set('Content-Type', 'application/json');
-
-				return $response;
+				$url = $this->generateUrl('pp_user_profil');
+				return $this->redirect($url);
 			}
 		}
 	}

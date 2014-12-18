@@ -90,7 +90,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<a class="btn btn-primary" href="">Créer un ingrédient</a><a class="btn btn-primary" href="">Créer une unité</a>
+			<a data-toggle="modal" data-target="#ingredientModal" class="btn btn-primary" href="">Créer un ingrédient</a> <a data-toggle="modal" data-target="#uniteModal" class="btn btn-primary" href="">Créer une unité</a>
 		</div>
 	</div>
 
@@ -150,60 +150,6 @@
 
 			<div class="modal-footer">
 				
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="gererIngredients" tabindex="-1" role="dialog" aria-labelledby="gererIngredientsLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span> <span class="sr-only">Fermer</span></button>
-				<h4 class="modal-title" id="gererIngredientsLabel">Gestion des ingredients</h4>
-			</div>
-
-			<div class="modal-body">
-				{{ form_start(ing_uniForm) }}
-					{{ form_errors(ing_uniForm) }}
-					<div class="row">
-						<div class="col-md-4">
-							<div class="form-group">
-								{{ form_errors(ing_uniForm.ingredient) }}
-								{{ form_label(ing_uniForm.ingredient) }}
-								{{ form_widget(ing_uniForm.ingredient, {attr: {class: 'form-control'}}) }}
-							</div>
-							<a id="ajouterIngredient" class="btn btn-primary" data-toggle="modal" data-target="#ingredientModal">Créer un ingrédient</a>
-						</div>
-
-						<div class="col-md-4">
-							<div class="form-group">
-								{{ form_errors(ing_uniForm.unite) }}
-								{{ form_label(ing_uniForm.unite) }}
-								{{ form_widget(ing_uniForm.unite, {attr: {class: 'form-control'}}) }}
-							</div>
-							<a id="ajouterUnite" class="btn btn-primary" data-toggle="modal" data-target="#uniteModal">Créer une unité</a>
-						</div>
-
-						<div class="col-md-4">
-							<div class="form-group">
-								{{ form_errors(ing_uniForm.quantite) }}
-								{{ form_label(ing_uniForm.quantite) }}
-								{{ form_widget(ing_uniForm.quantite, {attr: {class: 'form-control'}}) }}
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<br />
-							<input id="submitIngredientRecette" class="btn btn-success" type="submit" data-loading-text="Patientez..." value="Ajouter l'ingrédient à la recette" />
-						</div>
-					</div>
-				{{ form_end(ing_uniForm) }}
-			</div>
-
-			<div class="modal-footer">
-				<button class="btn btn-default" data-dismiss="modal">Fermer</button>
 			</div>
 		</div>
 	</div>

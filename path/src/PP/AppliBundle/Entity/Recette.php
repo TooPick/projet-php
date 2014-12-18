@@ -33,70 +33,70 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="rct_titre", type="string", length=80)
+     * @ORM\Column(name="rct_titre", type="string", length=80, nullable=true)
      */
     private $rctTitre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rct_description", type="text")
+     * @ORM\Column(name="rct_description", type="text", nullable=true)
      */
     private $rctDescription;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="rct_temps_preparation", type="time")
+     * @ORM\Column(name="rct_temps_preparation", type="time", nullable=true)
      */
     private $rctTempsPreparation;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="rct_temps_cuisson", type="time")
+     * @ORM\Column(name="rct_temps_cuisson", type="time", nullable=true)
      */
     private $rctTempsCuisson;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="rct_temps_repos", type="time")
+     * @ORM\Column(name="rct_temps_repos", type="time", nullable=true)
      */
     private $rctTempsRepos;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rct_difficulte", type="string", length=255)
+     * @ORM\Column(name="rct_difficulte", type="string", length=255, nullable=true)
      */
     private $rctDifficulte;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rct_cout", type="string", length=255)
+     * @ORM\Column(name="rct_cout", type="string", length=255, nullable=true)
      */
     private $rctCout;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rct_statut", type="string", length=255)
+     * @ORM\Column(name="rct_statut", type="string", length=255, nullable=true)
      */
     private $rctStatut;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rct_illustration", type="string", length=80)
+     * @ORM\Column(name="rct_illustration", type="string", length=80, nullable=true)
      */
     private $rctIllustration;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="rct_nbpersonne", type="integer")
+     * @ORM\Column(name="rct_nbpersonne", type="integer", nullable=true)
      */
     private $rctNbpersonne;
 	
@@ -113,7 +113,7 @@ class Recette
 	private $utilisateur;
 
     /** 
-     * @ORM\ManyToMany(targetEntity="PP\AppliBundle\Entity\IngredientUnite", cascade="remove")
+     * @ORM\ManyToMany(targetEntity="PP\AppliBundle\Entity\IngredientUnite", cascade="persist")
      */
     private $ingredients;
 	

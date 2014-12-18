@@ -16,7 +16,22 @@
 		<div class="panel-body">
 			<div class="row">				
 				<div class="col-md-8">
-					<p>{{ recette.rctDescription }}</p>
+					<div class="row">
+						<div class="col-md-12">
+							<h3>Ingrédients</h3>
+							<ul class="list-group">
+								{% for ingredient in recette.ingredients %}
+									<li class="list-group-item">{{ ingredient.ingredient.igdLabel }} : {{ ingredient.quantite }} <strong>{{ ingredient.unite.uniShortLabel }}</strong></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<p>{{ recette.rctDescription }}</p>
+						</div>
+					</div>
 				</div>
 				
 				<div class="col-md-4">
