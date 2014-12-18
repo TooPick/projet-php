@@ -5,19 +5,3 @@ pp_user_profil:
 pp_user_editerProfil:
     path:    /editerProfil
     defaults: { _controller: PPUserBundle:User:editerProfil }
-
-pp_user_ajouterRecette:
-    path:    /recette/ajouter
-    defaults: { _controller: PPUserBundle:User:ajouterRecette }
-
-pp_user_editRecette:
-    path:    /recette/editer/{id}
-    defaults: { _controller: PPUserBundle:User:editRecette }
-    requirements:
-        id:    \d+
-
-pp_user_supprimerRecette:
-    path:    /recette/supprimer/{id}
-    defaults: { _controller: PPUserBundle:User:supprimerRecette }
-    requirements:
-        id:    \d+

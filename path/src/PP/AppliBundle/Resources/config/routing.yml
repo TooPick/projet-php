@@ -7,7 +7,7 @@ pp_appli_recetteListe:
     defaults: { _controller: PPAppliBundle:Appli:recetteListe, idCat:0 }
 
 pp_appli_recetteDetail:
-    path:    /recette/detail/{id}
+    path:    /detail/{id}
     defaults: { _controller: PPAppliBundle:Appli:recetteDetail }
     requirements:
         id:    \d+
@@ -19,5 +19,21 @@ pp_appli_search:
 pp_appli_nouveautes:
     path:    /nouveautes/{page}
     defaults: { _controller: PPAppliBundle:Appli:nouveautes, page:1 }
+    requirements:
+        id:    \d+
+
+pp_appli_ajouterRecette:
+    path:    /recette/ajouter
+    defaults: { _controller: PPAppliBundle:Recette:ajouterRecette }
+
+pp_appli_editRecette:
+    path:    /recette/editer/{id}
+    defaults: { _controller: PPAppliBundle:Recette:editRecette }
+    requirements:
+        id:    \d+
+
+pp_appli_supprimerRecette:
+    path:    /recette/supprimer/{id}
+    defaults: { _controller: PPAppliBundle:Recette:supprimerRecette }
     requirements:
         id:    \d+

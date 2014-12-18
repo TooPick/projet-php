@@ -49,7 +49,8 @@ class RecetteType extends AbstractType
               'class'          => 'PPAppliBundle:Ingredient',
               'property'     => 'igdLabel',
               'multiple'  => true,
-              'label'         => 'Gestion des ingrédients :'
+              'label'         => 'Gestion des ingrédients :',
+              'required'  => false
             ))
         ;
     }
