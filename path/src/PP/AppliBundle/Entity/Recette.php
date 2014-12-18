@@ -113,7 +113,7 @@ class Recette
 	private $utilisateur;
 
     /** 
-     * @ORM\ManyToMany(targetEntity="PP\AppliBundle\Entity\Ingredient", cascade="persist")
+     * @ORM\ManyToMany(targetEntity="PP\AppliBundle\Entity\IngredientUnite", cascade="persist")
      */
     private $ingredients;
 	

@@ -46,8 +46,8 @@ class RecetteType extends AbstractType
               'label'		=> 'Catégorie de la recette :'
             ))
             ->add('ingredients', 'entity', array(
-              'class'          => 'PPAppliBundle:Ingredient',
-              'property'     => 'igdLabel',
+              'class'          => 'PPAppliBundle:IngredientUnite',
+              'property'     => 'ingredient',
               'multiple'  => true,
               'label'         => 'Gestion des ingrédients :',
               'required'  => false

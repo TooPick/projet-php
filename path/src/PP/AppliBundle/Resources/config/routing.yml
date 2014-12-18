@@ -37,3 +37,15 @@ pp_appli_supprimerRecette:
     defaults: { _controller: PPAppliBundle:Recette:supprimerRecette }
     requirements:
         id:    \d+
+
+pp_appli_ajouterIngredient:
+    path:    /recette/ingredient/ajouter
+    defaults: { _controller: PPAppliBundle:Recette:ajouterIngredient }
+
+pp_appli_ajouterUnite:
+    path:    /recette/unite/ajouter
+    defaults: { _controller: PPAppliBundle:Recette:ajouterUnite }
+
+pp_appli_ajouterIngredientRecette:
+    path:    /recette/ajouterIngredient
+    defaults: { _controller: PPAppliBundle:Recette:ajouterIngredientRecette }

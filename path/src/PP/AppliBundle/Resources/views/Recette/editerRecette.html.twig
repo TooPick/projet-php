@@ -11,12 +11,13 @@
 {% block javascripts %}
 	<script>
 		$(document).ready(function () {
+			/* Ajout d'un ingredient en ajax */
 			$("input#submitIngredient").click(function(){
 				var btn = $(this);
     			btn.button('loading');
 				$.ajax({
 					type: "POST",
-					url: "{{ path('pp_appli_editRecette', {id:recette.id}) }}",
+					url: "{{ path('pp_appli_ajouterIngredient') }}",
 					data: $('form').serialize(),
 					success: function(){
 						btn.button('reset');
@@ -31,6 +32,53 @@
 				});
 			});
 
+			/* Ajout d'une unité en ajax */
+			$("input#submitUnite").click(function(){
+				var btn = $(this);
+    			btn.button('loading');
+				$.ajax({
+					type: "POST",
+					url: "{{ path('pp_appli_ajouterUnite') }}",
+					data: $('form').serialize(),
+					success: function(){
+						btn.button('reset');
+						$("#uniteModal form")[0].reset();
+						$("#uniteModal").modal('hide');
+						$("#gererIngredients").modal('show');
+					},
+					error: function(){
+						alert("Echec de l'ajout !");
+						btn.button('reset');
+					}
+				});
+			});
+
+			/* Ajout d'un ingredient à la recette */
+			$("input#submitIngredientRecette").click(function(){
+				var btn = $(this);
+    			btn.button('loading');
+
+    			$.ajax({
+					type: "POST",
+					url: "{{ path('pp_appli_ajouterIngredientRecette') }}",
+					data: $('form').serialize(),
+					success: function(){
+						btn.button('reset');
+						$("#gererIngredients form")[0].reset();
+						$("#gererIngredients").modal('hide');
+					},
+					error: function(){
+						alert("Echec de l'ajout !");
+						btn.button('reset');
+					}
+				});
+
+				$("#gererIngredients").modal('hide');
+				btn.button('reset');
+				return false;
+			});
+
+			/* Masque les boites modal après envoi */
 			$("#ajouterIngredient").click(function(){
 				$("#gererIngredients").modal('hide');
 			});

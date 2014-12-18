@@ -146,7 +146,7 @@
 				<br />
 				<div class="text-right">
 					<button class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<input type="submit" class="btn btn-success" data-loading-text="Patientez..." id="submitIngredient" value="Ajouter" />
+					<input type="submit" class="btn btn-success" data-loading-text="Patientez..." id="submitUnite" value="Ajouter" />
 				</div>
 			</div>
 
@@ -166,15 +166,42 @@
 			</div>
 
 			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-6">
-						<a id="ajouterIngredient" class="btn btn-primary" data-toggle="modal" data-target="#ingredientModal">Ajouter un ingrédient</a>
+				{{ form_start(ing_uniForm) }}
+					{{ form_errors(ing_uniForm) }}
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								{{ form_errors(ing_uniForm.ingredient) }}
+								{{ form_label(ing_uniForm.ingredient) }}
+								{{ form_widget(ing_uniForm.ingredient, {attr: {class: 'form-control'}}) }}
+							</div>
+							<a id="ajouterIngredient" class="btn btn-primary" data-toggle="modal" data-target="#ingredientModal">Créer un ingrédient</a>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								{{ form_errors(ing_uniForm.unite) }}
+								{{ form_label(ing_uniForm.unite) }}
+								{{ form_widget(ing_uniForm.unite, {attr: {class: 'form-control'}}) }}
+							</div>
+							<a id="ajouterUnite" class="btn btn-primary" data-toggle="modal" data-target="#uniteModal">Créer une unité</a>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								{{ form_errors(ing_uniForm.quantite) }}
+								{{ form_label(ing_uniForm.quantite) }}
+								{{ form_widget(ing_uniForm.quantite, {attr: {class: 'form-control'}}) }}
+							</div>
+						</div>
 					</div>
-					<div class="col-md-6">
-						<a id="ajouterUnite" class="btn btn-primary" data-toggle="modal" data-target="#uniteModal">Ajouter une unité</a>
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<br />
+							<input id="submitIngredientRecette" class="btn btn-success" type="submit" data-loading-text="Patientez..." value="Ajouter l'ingrédient à la recette" />
+						</div>
 					</div>
-					{{ form(ing_uniForm) }}
-				</div>
+				{{ form_end(ing_uniForm) }}
 			</div>
 
 			<div class="modal-footer">

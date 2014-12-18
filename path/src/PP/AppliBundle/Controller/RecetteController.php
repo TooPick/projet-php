@@ -76,18 +76,9 @@ class RecetteController extends Controller
 		if($request->getMethod() == "POST")
 		{
 			$form->bind($request);
-
-			$em = $this->getDoctrine()->getManager();
-
-			$ingredientForm->bind($request);
-			if($ingredientForm->isValid())
+			if($form->isValid())
 			{
-				$ingredient->setUtilisateur($this->getUser());
-				$em->persist($ingredient);
-				$em->flush();
-			}
-			else if($form->isValid())
-			{
+				$em = $this->getDoctrine()->getManager();
 				$em->persist($recette);
 				$em->flush();
 				
@@ -110,5 +101,70 @@ class RecetteController extends Controller
 	
 		$url = $this->generateUrl('pp_user_profil');
 		return $this->redirect($url);
+	}
+
+	public function ajouterIngredientAction()
+	{
+		$ingredient = new Ingredient();
+		$ingredientForm = $this->createForm(new IngredientType, $ingredient);
+
+		$request = $this->getRequest();
+		if($request->getMethod() == "POST")
+		{
+			$ingredientForm->bind($request);
+			if($ingredientForm->isValid())
+			{
+				$em = $this->getDoctrine()->getManager();
+				$ingredient->setUtilisateur($this->getUser());
+				$em->persist($ingredient);
+				$em->flush();
+
+				$url = $this->generateUrl('pp_user_profil');
+				return $this->redirect($url);
+			}
+		}
+	}
+
+	public function ajouterUniteAction()
+	{
+		$unite = new Unite();
+		$uniteForm = $this->createForm(new UniteType, $unite);
+
+		$request = $this->getRequest();
+		if($request->getMethod() == "POST")
+		{
+			$uniteForm->bind($request);
+			if($uniteForm->isValid())
+			{
+				$em = $this->getDoctrine()->getManager();
+				$unite->setUtilisateur($this->getUser());
+				$em->persist($unite);
+				$em->flush();
+
+				$url = $this->generateUrl('pp_user_profil');
+				return $this->redirect($url);
+			}
+		}
+	}
+
+	public function ajouterIngredientRecetteAction()
+	{
+		$ing_uni = new IngredientUnite();
+		$ing_uniForm = $this->createForm(new IngredientUniteType, $ing_uni);
+
+		$request = $this->getRequest();
+		if($request->getMethod() == "POST")
+		{
+			$ing_uniForm->bind($request);
+			if($ing_uniForm->isValid())
+			{
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($ing_uni);
+				$em->flush();
+
+				$url = $this->generateUrl('pp_user_profil');
+				return $this->redirect($url);
+			}
+		}
 	}
 }
