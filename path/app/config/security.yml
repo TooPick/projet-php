@@ -8,11 +8,6 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         main:
             entity: { class: PP\UserBundle\Entity\Utilisateur, property: username }
 
@@ -33,7 +28,6 @@ security:
                 target:    /
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/inscription, roles: IS_ANONYMOUS }
         - { path: ^/user, roles: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/recette/editer, roles: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/admin, roles: ROLE_ADMIN }
