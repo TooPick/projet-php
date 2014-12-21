@@ -71,3 +71,7 @@ pp_admin_supprUnite:
     defaults: { _controller: PPAdminBundle:Unite:suppr }
     requirements:
         id:    \d+
+
+pp_admin_ajouterCategorie:
+    path:    /categorie/ajouter
+    defaults: { _controller: PPAdminBundle:Categorie:ajouter }
