@@ -1,44 +1,11 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-	<h3>Edition d'un ingrédient</h3>
-	<a href="{{ path('pp_admin_ingredientsAttente') }}">Retour à la liste des ingrédients en attente</a>
-	{{ form_start(form) }}
-		{{ form_errors(form) }}
 
-		<div class="form-group">
-			{{ form_errors(form.igdLabel) }}
-			{{ form_label(form.igdLabel) }}
-			{{ form_widget(form.igdLabel, {attr: {class: 'form-control'}}) }}
-		</div>
-
-		<div class="form-group">
-			{{ form_errors(form.igdDescription) }}
-			{{ form_label(form.igdDescription) }}
-			{{ form_widget(form.igdDescription, {attr: {class: 'form-control'}}) }}
-		</div>
-
-		<div class="form-group">
-			{{ form_errors(form.igdIllustration) }}
-			{{ form_label(form.igdIllustration) }}
-			{{ form_widget(form.igdIllustration, {attr: {class: 'form-control'}}) }}
-		</div>
-
-		<div class="form-group">
-			{{ form_errors(form.igdValide) }}
-			{{ form_label(form.igdValide) }}
-			{{ form_widget(form.igdValide, {attr: {class: 'form-control'}}) }}
-		</div>
-
-		<center><input class="btn btn-primary" type="submit" value="Enregistrer" /></center>
-		<br />
-		<center><a class="btn btn-danger" data-toggle="modal" data-target="#modalSuppression" data-path="{{ path('pp_admin_supprIngredient', {id:ingredient.id}) }}">Supprimer</a></center>
-
-	{{ form_end(form) }}
-
-	{% include "PPAdminBundle:Ingredient:modal.html.twig" %}
-	{% block javascripts %}
-		{% include "PPAdminBundle:Ingredient:modalJs.html.twig" %}
-	{% endblock %}
+	<h3>Edition d'une catégorie</h3>
+	<a href="{{ path('pp_admin_listeCategories') }}">Retour à la liste des catégories</a>
+	<hr>
+	
+	{% include "PPAdminBundle:Categorie:form.html.twig" %}
 	
 {% endblock %}

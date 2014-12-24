@@ -72,6 +72,26 @@ pp_admin_supprUnite:
     requirements:
         id:    \d+
 
+pp_admin_listeCategories:
+    path:    /categorie/liste
+    defaults: { _controller: PPAdminBundle:Categorie:liste }
+
 pp_admin_ajouterCategorie:
     path:    /categorie/ajouter
     defaults: { _controller: PPAdminBundle:Categorie:ajouter }
+
+pp_admin_editCategorie:
+    path:    /categorie/edit/{id}
+    defaults: { _controller: PPAdminBundle:Categorie:edit }
+    requirements:
+        id:    \d+
+
+pp_admin_supprCategorie:
+    path:    /categorie/suppr/{id}
+    defaults: { _controller: PPAdminBundle:Categorie:suppr }
+    requirements:
+        id:    \d+
+
+pp_test:
+    path:    /test
+    defaults: { _controller: PPAdminBundle:Categorie:test }

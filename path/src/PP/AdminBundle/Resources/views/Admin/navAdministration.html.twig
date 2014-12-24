@@ -2,6 +2,13 @@
 <ul class="nav nav-tabs nav-justified">
 	<li><a href="{{ path('pp_admin_homepage') }}">Accueil</a></li>
 	<li><a href="{{ path('pp_admin_listeUtilisateurs') }}">Liste des utilisateurs</a></li>
+	<li class="dorpdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Catégories<span class="caret"></span></a>
+		<ul class="dropdown-menu">
+			<li><a href="{{ path('pp_admin_listeCategories') }}">Liste des catégories</a></li>
+			<li><a href="{{ path('pp_admin_ajouterCategorie') }}">Ajouter une catégorie</a></li>
+		</ul>
+	</li>
 	<li class="dropdown">
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Recettes<span class="caret"></span></a>
 		<ul class="dropdown-menu">

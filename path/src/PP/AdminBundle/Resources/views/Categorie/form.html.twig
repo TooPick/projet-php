@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+	{{ form_errors(form) }}
+
+	<div class="form-group">
+		{{ form_errors(form.catLabel) }}
+		{{ form_label(form.catLabel) }}
+		{{ form_widget(form.catLabel, {attr: {class: 'form-control'}}) }}
+	</div>
+
+	<div class="form-group">
+		{{ form_errors(form.catDescription) }}
+		{{ form_label(form.catDescription) }}
+		{{ form_widget(form.catDescription, {attr: {class: 'form-control'}}) }}
+	</div>
+
+	<div class="form-group">
+		{{ form_errors(form.catIllustration) }}
+		{{ form_label(form.catIllustration) }}
+		{{ form_widget(form.catIllustration, {attr: {class: 'form-control'}}) }}
+	</div>
+
+	<center><input class="btn btn-primary" type="submit" value="Enregistrer" /></center>
+
+{{ form_end(form) }}

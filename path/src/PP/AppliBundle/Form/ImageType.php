@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategorieType extends AbstractType
+class ImageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,8 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('catLabel', NULL, array('label' => "Nom :"))
-            ->add('catDescription', NULL, array('label' => "Description :"))
-            ->add('catIllustration', NULL, array('label' => "Ilustration :"))
+            ->add('file', 'file')
+            ->add('enregistrer', 'submit');
         ;
     }
     
@@ -27,7 +26,7 @@ class CategorieType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PP\AppliBundle\Entity\Categorie'
+            'data_class' => 'PP\AppliBundle\Entity\Image'
         ));
     }
 
@@ -36,6 +35,6 @@ class CategorieType extends AbstractType
      */
     public function getName()
     {
-        return 'pp_applibundle_categorie';
+        return 'pp_applibundle_image';
     }
 }
