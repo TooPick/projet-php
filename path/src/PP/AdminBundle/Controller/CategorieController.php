@@ -101,7 +101,12 @@ class CategorieController extends Controller
 			$form->bind($request);
 			if($form->isValid())
 			{
-				$image->upload($this->getUser(), 'recettes');
+				$image->setUtilisateur($this->getUser());
+				$image->setType('categorie');
+				//$image->preUpload();
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($image);
+				$em->flush();
 			}
 		}
 
