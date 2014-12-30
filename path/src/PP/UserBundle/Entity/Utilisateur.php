@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use PP\AppliBundle\Entity\Image;
+
 /**
  * Utilisateur
  *
@@ -58,13 +60,6 @@ class Utilisateur implements UserInterface
      * @ORM\Column(name="uti_prenom", type="string", length=255)
      */
     private $utiPrenom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="uti_avatar", type="string", length=80)
-     */
-    private $utiAvatar;
 	
 	/**
 	 * @ORM\Column(name="roles", type="array")
@@ -225,29 +220,6 @@ class Utilisateur implements UserInterface
     }
 
     /**
-     * Set utiAvatar
-     *
-     * @param string $utiAvatar
-     * @return Utilisateur
-     */
-    public function setUtiAvatar($utiAvatar)
-    {
-        $this->utiAvatar = $utiAvatar;
-
-        return $this;
-    }
-
-    /**
-     * Get utiAvatar
-     *
-     * @return string 
-     */
-    public function getUtiAvatar()
-    {
-        return $this->utiAvatar;
-    }
-
-    /**
      * Set roles
      *
      * @param array $roles
@@ -272,6 +244,5 @@ class Utilisateur implements UserInterface
 	
 	public function eraseCredentials()
 	{
-	
-	}
+    }
 }

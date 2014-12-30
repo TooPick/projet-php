@@ -9,7 +9,7 @@
 		{% endif %}
 			<div class="col-md-4">
 				<div class="thumbnail">
-					<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="http://placehold.it/350x300"></a>
+					<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="{{ asset('uploads/images/' ~ recette.utilisateur.username ~ '/recettes/' ~ recette.rctIllustration.id ~ '.' ~ recette.rctIllustration.url) }}"></a>
 					<h3 class="text-center"><a href="">{{ recette.rctTitre }}</a></h3>
 				</div>
 			</div>

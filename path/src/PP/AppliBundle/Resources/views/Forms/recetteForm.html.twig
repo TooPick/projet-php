@@ -35,12 +35,6 @@
 				</div>
 				
 				<div class="col-md-6">
-				
-					<div class="form-group">
-						{{ form_errors(form.rctIllustration) }}
-						{{ form_label(form.rctIllustration) }}
-						{{ form_widget(form.rctIllustration, {attr: {class: 'form-control'}}) }}
-					</div>
 					
 					<div class="form-group">
 						{{ form_errors(form.rctNbpersonne) }}
@@ -84,7 +78,18 @@
 				{{ form_errors(form.rctTempsRepos) }}
 				{{ form_label(form.rctTempsRepos) }}
 				{{ form_widget(form.rctTempsRepos, {attr: {class: 'form-control'}}) }}
-			</div>		
+			</div>
+
+			<div class="form-group">
+				{{ form_errors(form.rctIllustration.file) }}
+				{{ form_label(form.rctIllustration.file) }}
+				{{ form_widget(form.rctIllustration.file, {attr: {class: 'form-control'}}) }}
+				<hr />
+				<label>Prévisualisation :</label>
+				{% if recette.rctIllustration != NULL %}
+					<img src="{{ asset('uploads/images/' ~ recette.utilisateur.username ~ '/recettes/' ~ recette.rctIllustration.id ~ '.' ~ recette.rctIllustration.url) }}" width='250'>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 
@@ -116,12 +121,7 @@
 			</div>
 
 			<div class="modal-body">
-				{{ form(ingredientForm) }}
-				<br />
-				<div class="text-right">
-					<button class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<input type="submit" class="btn btn-success" data-loading-text="Patientez..." id="submitIngredient" value="Ajouter" />
-				</div>
+				{% include "PPAppliBundle:Forms:ingredientForm.html.twig" %}
 			</div>
 
 			<div class="modal-footer">

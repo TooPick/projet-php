@@ -22,25 +22,25 @@ class RecetteAdminType extends AbstractType
             ->add('rctTempsPreparation')
             ->add('rctTempsCuisson')
             ->add('rctTempsRepos')
-			->add('rctDifficulte', 'choice', array(
-				'choices'   => array('facile' => 'Facile', 'moyen' => 'Moyen', 'difficile' => 'Difficile'),
-				'required'  => true,
-			))
-			->add('rctCout', 'choice', array(
-				'choices'   => array('faible' => 'Faible', 'moyen' => 'Moyen', 'eleve' => 'Elevé'),
-				'required'  => true,
-			))
-			->add('rctStatut', 'choice', array(
-				'choices'   => array('brouillon' => 'Brouillon', 'soumise' => 'Mettre en attente de relecture', 'finale' => 'Publier'),
-				'required'  => true,
-			))
-            ->add('rctIllustration')
+      			->add('rctDifficulte', 'choice', array(
+      				'choices'   => array('facile' => 'Facile', 'moyen' => 'Moyen', 'difficile' => 'Difficile'),
+      				'required'  => true,
+      			))
+      			->add('rctCout', 'choice', array(
+      				'choices'   => array('faible' => 'Faible', 'moyen' => 'Moyen', 'eleve' => 'Elevé'),
+      				'required'  => true,
+      			))
+      			->add('rctStatut', 'choice', array(
+      				'choices'   => array('brouillon' => 'Brouillon', 'soumise' => 'Mettre en attente de relecture', 'finale' => 'Publier'),
+      				'required'  => true,
+      			))
+            ->add('rctIllustration', new ImageType(), array('label' => 'Illustration de la recette :'))
             ->add('rctNbpersonne')
             ->add('categorie', 'entity', array(
               'class'    => 'PPAppliBundle:Categorie',
               'property' => 'catLabel'
             ))
-			->add('valider', 'submit')
+			     ->add('valider', 'submit')
         ;
     }
     

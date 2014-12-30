@@ -19,7 +19,7 @@
 		{% for recette in recettes|slice(0,3) %}
 			<div class="col-md-4">
 				<div class="thumbnail">
-					<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="http://placehold.it/350x300"></a>
+					<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="{{ asset('uploads/images/' ~ recette.utilisateur.username ~ '/recettes/' ~ recette.rctIllustration.id ~ '.' ~ recette.rctIllustration.url) }}"></a>
 					<div class="text-center caption">
 						<h4><a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}">{{ recette.rctTitre }}</a></h4>
 					</div>

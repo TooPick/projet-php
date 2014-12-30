@@ -44,6 +44,8 @@ class IngredientController extends Controller
 			if($form->isValid())
 			{
 				$em = $this->getDoctrine()->getManager();
+                $ingredient->getIgdIllustration()->setType('ingredient');
+                $ingredient->getIgdIllustration()->setUtilisateur($this->getUser());
 				$em->persist($ingredient);
 				$em->flush();
 

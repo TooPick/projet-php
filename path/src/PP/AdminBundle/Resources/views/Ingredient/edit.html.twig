@@ -19,10 +19,16 @@
 		</div>
 
 		<div class="form-group">
-			{{ form_errors(form.igdIllustration) }}
-			{{ form_label(form.igdIllustration) }}
-			{{ form_widget(form.igdIllustration, {attr: {class: 'form-control'}}) }}
+			{{ form_errors(form.igdIllustration.file) }}
+			{{ form_label(form.igdIllustration.file) }}
+			{{ form_widget(form.igdIllustration.file, {attr: {class: 'form-control'}}) }}
+			<hr />
+			<label>Prévisualisation :</label>
+			{% if ingredient.igdIllustration != NULL %}
+				<img src="{{ asset('uploads/images/' ~ ingredient.utilisateur.username ~ '/ingredients/' ~ ingredient.igdIllustration.id ~ '.' ~ ingredient.igdIllustration.url) }}" width='250'>
+			{% endif %}
 		</div>
+
 
 		<div class="form-group">
 			{{ form_errors(form.igdValide) }}

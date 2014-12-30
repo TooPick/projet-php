@@ -8,6 +8,7 @@ use PP\AppliBundle\Entity\Recette;
 use PP\AppliBundle\Entity\Ingredient;
 use PP\AppliBundle\Entity\Unite;
 use PP\AppliBundle\Entity\IngredientUnite;
+use PP\AppliBundle\Entity\Image;
 
 use PP\AppliBundle\Form\RecetteType;
 use PP\AppliBundle\Form\IngredientType;
@@ -40,6 +41,8 @@ class RecetteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				
 				$recette->setUtilisateur($this->getUser());
+				$recette->getRctIllustration()->setType('recette');
+				$recette->getRctIllustration()->setUtilisateur($this->getUser());
 				$em->persist($recette);
 				$em->flush();
 				
@@ -76,6 +79,8 @@ class RecetteController extends Controller
 			if($form->isValid())
 			{
 				$em = $this->getDoctrine()->getManager();
+				$recette->getRctIllustration()->setType('recette');
+				$recette->getRctIllustration()->setUtilisateur($this->getUser());
 				$em->persist($recette);
 				$em->flush();
 				
@@ -113,6 +118,8 @@ class RecetteController extends Controller
 			{
 				$em = $this->getDoctrine()->getManager();
 				$ingredient->setUtilisateur($this->getUser());
+				$ingredient->getIgdIllustration()->setType('ingredient');
+				$ingredient->getIgdIllustration()->setUtilisateur($this->getUser());
 				$em->persist($ingredient);
 				$em->flush();
 

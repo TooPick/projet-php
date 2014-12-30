@@ -36,9 +36,7 @@ class Ingredient
     private $igdDescription;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="igd_illustration", type="string", length=80)
+     * @ORM\OneToOne(targetEntity="PP\AppliBundle\Entity\Image", cascade={"persist"})
      */
     private $igdIllustration;
 
@@ -118,29 +116,6 @@ class Ingredient
     }
 
     /**
-     * Set igdIllustration
-     *
-     * @param string $igdIllustration
-     * @return Ingredient
-     */
-    public function setIgdIllustration($igdIllustration)
-    {
-        $this->igdIllustration = $igdIllustration;
-
-        return $this;
-    }
-
-    /**
-     * Get igdIllustration
-     *
-     * @return string 
-     */
-    public function getIgdIllustration()
-    {
-        return $this->igdIllustration;
-    }
-
-    /**
      * Set igdValide
      *
      * @param boolean $igdValide
@@ -185,5 +160,28 @@ class Ingredient
     public function getUtilisateur()
     {
         return $this->utilisateur;
+    }
+
+    /**
+     * Set igdIllustration
+     *
+     * @param \PP\AppliBundle\Entity\Image $igdIllustration
+     * @return Ingredient
+     */
+    public function setIgdIllustration(\PP\AppliBundle\Entity\Image $igdIllustration = null)
+    {
+        $this->igdIllustration = $igdIllustration;
+
+        return $this;
+    }
+
+    /**
+     * Get igdIllustration
+     *
+     * @return \PP\AppliBundle\Entity\Image 
+     */
+    public function getIgdIllustration()
+    {
+        return $this->igdIllustration;
     }
 }

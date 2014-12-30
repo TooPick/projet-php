@@ -7,8 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PP\AppliBundle\Entity\Categorie;
 use PP\AppliBundle\Entity\Recette;
 use PP\AppliBundle\Entity\Commentaire;
+use PP\AppliBundle\Entity\Note;
+
 use PP\AppliBundle\Form\RecetteType;
 use PP\AppliBundle\Form\CommentaireType;
+use PP\AppliBundle\Form\NoteType;
 
 class AppliController extends Controller
 {
@@ -59,30 +62,59 @@ class AppliController extends Controller
 			$url = $this->generateUrl('pp_appli_recetteListe');
 			return $this->redirect($url);
 		}
+		
 		$em = $this->getDoctrine()->getManager();
 		$commentaireRepository = $em->getRepository('PPAppliBundle:Commentaire');
 		$commentaires = $commentaireRepository->findBy(array('recette' => $recette), array('comDate' => 'DESC'));
 		
 		$commentaire = new Commentaire();
 		$form = $this->createForm(new CommentaireType, $commentaire);
+
+		$note = new Note();
+		$noteForm = $this->createForm(new NoteType, $note);
+
+		$noteRepository = $em->getRepository('PPAppliBundle:Note');
+		$noteUtilisateur = $noteRepository->findOneBy(array('recette' => $recette, 'utilisateur' => $this->getUser()));
+
+		$createur = ($this->getUser() == $recette->getUtilisateur());
+
+		$noteGenerale = $noteRepository->noteGenerale($recette);
 		
 		$request = $this->get('request');
 		if($request->getMethod() == "POST")
 		{
-			$form->bind($request);
-			if($form->isValid())
+			if ($request->request->has('pp_applibundle_note'))
 			{
-				$commentaire->setRecette($recette);
-				$commentaire->setUtilisateur($this->getUser());
-				$em->persist($commentaire);
-				$em->flush();
-				
-				$url = $this->generateUrl('pp_appli_recetteDetail', array('id' => $recette->getId()));
-				return $this->redirect($url);
-			}
+           		$noteForm->bind($request);
+				if($noteForm->isValid())
+				{
+					$note->setRecette($recette);
+					$note->setUtilisateur($this->getUser());
+					$em->persist($note);
+					$em->flush();
+					
+					$url = $this->generateUrl('pp_appli_recetteDetail', array('id' => $recette->getId()));
+					return $this->redirect($url);
+				}
+	        }
+	 
+	        if ($request->request->has('pp_applibundle_commentaire'))
+	        {
+	            $form->bind($request);
+				if($form->isValid())
+				{
+					$commentaire->setRecette($recette);
+					$commentaire->setUtilisateur($this->getUser());
+					$em->persist($commentaire);
+					$em->flush();
+					
+					$url = $this->generateUrl('pp_appli_recetteDetail', array('id' => $recette->getId()));
+					return $this->redirect($url);
+				}
+	        }
 		}
 	
-		return $this->render('PPAppliBundle:Pages:recetteDetail.html.twig', array('recette' => $recette, 'form' => $form->createView(), 'commentaires' => $commentaires));
+		return $this->render('PPAppliBundle:Pages:recetteDetail.html.twig', array('recette' => $recette, 'form' => $form->createView(), 'commentaires' => $commentaires, 'noteForm' => $noteForm->createView(), 'noteUtilisateur' => $noteUtilisateur, 'createur' => $createur, 'noteGenerale' => $noteGenerale));
 	}
 
 	public function searchAction()

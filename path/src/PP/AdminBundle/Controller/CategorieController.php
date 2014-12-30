@@ -37,6 +37,7 @@ class CategorieController extends Controller
 			if($form->isValid())
 			{
 				$em = $this->getDoctrine()->getManager();
+				$categorie->getCatIllustration()->setType('categorie');
 				$em->persist($categorie);
 				$em->flush();
 
@@ -45,7 +46,7 @@ class CategorieController extends Controller
 			}
 		}
 
-		return $this->render('PPAdminBundle:Categorie:ajouter.html.twig', array('form' => $form->createView()));
+		return $this->render('PPAdminBundle:Categorie:ajouter.html.twig', array('form' => $form->createView(), 'categorie' => $categorie));
 	}
 
 	public function editAction(Categorie $categorie = NULL)
@@ -62,6 +63,7 @@ class CategorieController extends Controller
 			if($form->isValid())
 			{
 				$em = $this->getDoctrine()->getManager();
+				$categorie->getCatIllustration()->setType('categorie');
 				$em->persist($categorie);
 				$em->flush();
 
@@ -70,7 +72,7 @@ class CategorieController extends Controller
 			}
 		}
 
-		return $this->render('PPAdminBundle:Categorie:edit.html.twig', array('form' => $form->createView()));
+		return $this->render('PPAdminBundle:Categorie:edit.html.twig', array('form' => $form->createView(), 'categorie' => $categorie));
 	}
 
 	public function supprAction(Categorie $categorie = NULL)

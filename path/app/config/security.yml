@@ -28,6 +28,5 @@ security:
                 target:    /
 
     access_control:
-        - { path: ^/inscription, roles: IS_ANONYMOUS }
         - { path: ^/user, roles: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/admin, roles: ROLE_ADMIN }

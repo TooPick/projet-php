@@ -48,6 +48,13 @@ class Image
      */
     private $utilisateur;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nameTemp", type="string", length=255, nullable=true)
+     */
+    private $nameTemp;
+
     public function __construct()
     {
         $this->setUtilisateur(NULL);
@@ -123,7 +130,15 @@ class Image
 
     public function setFile(UploadedFile $file = NULL)
     {
-        $this->file = $file;
+        $ext = $file->guessExtension();
+        if($ext == "png" || $ext == "jpeg" || $ext == "gif" )
+        {
+            $this->setNameTemp($this->getUrl());
+            $this->file = $file;
+
+            $this->setUrl(NULL);
+            $this->setAlt(NULL);
+        }
     }
 
     /**
@@ -182,7 +197,6 @@ class Image
             return;
 
         $this->setUrl($this->getFile()->guessExtension());
-
         $this->setAlt($this->getFile()->getClientOriginalName());
     }
 
@@ -195,29 +209,44 @@ class Image
         if($this->getFile() == NULL || $this->getType() == NULL)
             return;
 
-        $path = $this->getUploadRootDir().'/'.$this->getUtilisateur()->getUsername();
+        if($this->getUtilisateur() == NULL)
+            $path = $this->getUploadRootDir();
+        else
+            $path = $this->getUploadRootDir().'/'.$this->getUtilisateur()->getUsername();
 
-        if($this->getType() == 'avatar')
-        {
-            $this->setAlt('avatar.'.$this->getUrl());
-        }
-        else if($this->getType() == 'recette')
-        {
-            $this->setAlt($this->getId().'.'.$this->getUrl());
-            $path = $path.'/recettes';
-        }
-        else if($this->getType() == 'ingredient')
-        {
-            $this->setAlt($this->getId().'.'.$this->getUrl());
-            $path = $path.'/ingredients';
-        }
-        else if($this->getType() == 'categorie')
-        {
-            $this->setAlt($this->getId().'.'.$this->getUrl());
-            $path = $this->getUploadRootDir().'/categories';
+        switch ($this->getType()) {
+            case 'avatar':
+                $this->setAlt('avatar.');
+                break;
+
+            case 'recette':
+                $this->setAlt($this->getId().'.');
+                $path = $path.'/recettes';
+                break;
+
+            case 'ingredient':
+                $this->setAlt($this->getId().'.');
+                $path = $path.'/ingredients';
+                break;
+
+            case 'categorie':
+                $this->setAlt($this->getId().'.');
+                $path = $path.'/categories';
+                break;
+            
+            default:
+                return;
+                break;
         }
 
-        $this->file->move($path, $this->getAlt());
+        $name = $path.'/'.$this->getAlt().$this->getNameTemp();
+        if (file_exists($name) && is_writable($name))
+        {
+            unlink ($name);
+        }
+
+        $this->file->move($path, $this->getAlt().$this->getUrl());
+
     }
 
     public function getUploadDir()
@@ -228,5 +257,28 @@ class Image
     public function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    /**
+     * Set nameTemp
+     *
+     * @param string $nameTemp
+     * @return Image
+     */
+    public function setNameTemp($nameTemp)
+    {
+        $this->nameTemp = $nameTemp;
+
+        return $this;
+    }
+
+    /**
+     * Get nameTemp
+     *
+     * @return string 
+     */
+    public function getNameTemp()
+    {
+        return $this->nameTemp;
     }
 }

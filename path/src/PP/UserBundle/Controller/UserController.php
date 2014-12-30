@@ -11,6 +11,7 @@ use PP\AppliBundle\Entity\Recette;
 use PP\AppliBundle\Entity\Ingredient;
 use PP\AppliBundle\Entity\Unite;
 use PP\AppliBundle\Entity\IngredientUnite;
+use PP\AppliBundle\Entity\Image;
 
 use PP\UserBundle\Form\UtilisateurType;
 use PP\UserBundle\Form\EditUtilisateurType;
@@ -18,6 +19,7 @@ use PP\AppliBundle\Form\RecetteType;
 use PP\AppliBundle\Form\IngredientType;
 use PP\AppliBundle\Form\UniteType;
 use PP\AppliBundle\Form\IngredientUniteType;
+use PP\AppliBundle\Form\ImageType;
 
 class UserController extends Controller
 {
@@ -29,8 +31,32 @@ class UserController extends Controller
 		$utilisateur = $this->getUser();
 		
 		$recettes = $recetteRepository->findBy(array('utilisateur' => $utilisateur));
+
+		$imageRepository = $em->getRepository('PPAppliBundle:Image');
+		$image = $imageRepository->findOneBy(array('utilisateur' => $utilisateur, 'type' => 'avatar'));
+
+		if($image == NULL)
+			$image = new Image();
+
+		$form = $this->createForm(new ImageType, $image);
+
+		$request = $this->getRequest();
+		if($request->getMethod() == "POST")
+		{
+			$form->bind($request);
+			if($form->isValid())
+			{
+				$image->setType('avatar');
+				$image->setUtilisateur($this->getUser());
+				$em->persist($image);
+				$em->flush();
+
+				$url = $this->generateUrl('pp_user_profil');
+				return $this->redirect($url);
+			}
+		}
 		
-		return $this->render('PPUserBundle:Pages:profil.html.twig', array('recettes' => $recettes, 'utilisateur' => $utilisateur));
+		return $this->render('PPUserBundle:Pages:profil.html.twig', array('recettes' => $recettes, 'utilisateur' => $utilisateur, 'form' => $form->createView(), 'image' => $image));
 	}
 
     public function inscriptionAction()
@@ -48,7 +74,6 @@ class UserController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				
 				$utilisateur->setSalt('');
-				$utilisateur->setUtiAvatar('');
 				//$utilisateur->setRoles(array("ROLE_ADMIN"));
 				$em->persist($utilisateur);
 				$em->flush();

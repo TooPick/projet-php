@@ -36,9 +36,7 @@ class Categorie
     private $catDescription;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="cat_illustration", type="string", length=80)
+     * @ORM\OneToOne(targetEntity="PP\AppliBundle\Entity\Image", cascade={"persist"})
      */
     private $catIllustration;
 
@@ -102,10 +100,10 @@ class Categorie
     /**
      * Set catIllustration
      *
-     * @param string $catIllustration
+     * @param \PP\AppliBundle\Entity\Image $catIllustration
      * @return Categorie
      */
-    public function setCatIllustration($catIllustration)
+    public function setCatIllustration(\PP\AppliBundle\Entity\Image $catIllustration = null)
     {
         $this->catIllustration = $catIllustration;
 
@@ -115,7 +113,7 @@ class Categorie
     /**
      * Get catIllustration
      *
-     * @return string 
+     * @return \PP\AppliBundle\Entity\Image 
      */
     public function getCatIllustration()
     {

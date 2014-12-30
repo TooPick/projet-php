@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use PP\AppliBundle\Form\ImageType;
+
 class CategorieType extends AbstractType
 {
     /**
@@ -17,7 +19,7 @@ class CategorieType extends AbstractType
         $builder
             ->add('catLabel', NULL, array('label' => "Nom :"))
             ->add('catDescription', NULL, array('label' => "Description :"))
-            ->add('catIllustration', NULL, array('label' => "Ilustration :"))
+            ->add('catIllustration', new ImageType(), array('label' => 'Illustration de la catégorie :'))
         ;
     }
     

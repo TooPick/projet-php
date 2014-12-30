@@ -1,0 +1,28 @@
+{{ form_start(ingredientForm) }}
+		{{ form_errors(ingredientForm) }}
+
+		<div class="form-group">
+			{{ form_errors(ingredientForm.igdLabel) }}
+			{{ form_label(ingredientForm.igdLabel) }}
+			{{ form_widget(ingredientForm.igdLabel, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(ingredientForm.igdDescription) }}
+			{{ form_label(ingredientForm.igdDescription) }}
+			{{ form_widget(ingredientForm.igdDescription, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(ingredientForm.igdIllustration.file) }}
+			{{ form_label(ingredientForm.igdIllustration.file) }}
+			{{ form_widget(ingredientForm.igdIllustration.file, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<br />
+		<div class="text-right">
+			<button class="btn btn-default" data-dismiss="modal">Fermer</button>
+			<input type="submit" class="btn btn-success" data-loading-text="Patientez..." id="submitIngredient" value="Ajouter" />
+		</div>
+
+	{{ form_end(form) }}

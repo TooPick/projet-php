@@ -14,9 +14,14 @@
 	</div>
 
 	<div class="form-group">
-		{{ form_errors(form.catIllustration) }}
-		{{ form_label(form.catIllustration) }}
-		{{ form_widget(form.catIllustration, {attr: {class: 'form-control'}}) }}
+		{{ form_errors(form.catIllustration.file) }}
+		{{ form_label(form.catIllustration.file) }}
+		{{ form_widget(form.catIllustration.file, {attr: {class: 'form-control'}}) }}
+		<hr />
+		<label>Prévisualisation :</label>
+		{% if categorie.catIllustration != NULL %}
+			<img src="{{ asset('uploads/images/categories/' ~ categorie.catIllustration.id ~ '.' ~ categorie.catIllustration.url) }}" width='250'>
+		{% endif %}
 	</div>
 
 	<center><input class="btn btn-primary" type="submit" value="Enregistrer" /></center>

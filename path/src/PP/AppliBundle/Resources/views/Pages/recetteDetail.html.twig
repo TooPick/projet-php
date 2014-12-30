@@ -16,6 +16,10 @@
 		<div class="panel-body">
 			<div class="row">				
 				<div class="col-md-8">
+					<div class="row text-center">
+						<img width="300" src="{{ asset('uploads/images/' ~ recette.utilisateur.username ~ '/recettes/' ~ recette.rctIllustration.id ~ '.' ~ recette.rctIllustration.url) }}" class="img-thumbnail">
+					</div>
+
 					<div class="row">
 						<div class="col-md-12">
 							<h3>Ingrédients</h3>
@@ -50,6 +54,36 @@
 	
 	<div class="panel panel-default">
 		<div class="panel-heading">
+			<h4>Note générale : <strong>{% if noteGenerale.note == NULL %}Pas encore de note{% else %}{{ noteGenerale.note|round(1, 'floor') }}{% endif %}</strong></h4>
+			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+				{% if createur == 1 %}
+					<p><em>Vous ne pouvez pas noter votre recette.</em></p>
+				{% else %}
+					{% if noteUtilisateur != NULL %}
+						<p><em>Vous avez déjà noté cette recette. <strong>(Note : {{ noteUtilisateur.note }})</strong></em></p>
+					{% else %}
+					
+						{{ form_start(noteForm) }}
+							{{ form_errors(noteForm) }}
+
+							<div class="form-inline">
+								<div class="form-group">
+									{{ form_label(noteForm.note) }}
+									{{ form_errors(noteForm.note) }}
+									{{ form_widget(noteForm.note, {'attr': {'class': 'form-control'}}) }}
+
+									<input type="submit" value="Valider" class="btn btn-success">
+								</div>
+							</div>
+						
+						{{ form_end(noteForm) }}
+
+					{% endif %}
+				{% endif %}
+
+			{% else %}
+				<p><em>Vous devez être connecté pour noter la recette.</em></p>
+			{% endif %}
 			<h3>Commentaires</h3>
 			
 			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -62,7 +96,7 @@
 						{{ form_widget(form.comTexte, {'attr': {'class': 'form-control'}}) }}
 						
 						<span class="input-group-btn">
-							{{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-default'}}) }}
+							{{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary'}}) }}
 						</span>
 					</div>
 				

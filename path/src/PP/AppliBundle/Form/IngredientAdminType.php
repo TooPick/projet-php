@@ -17,7 +17,7 @@ class IngredientAdminType extends AbstractType
         $builder
             ->add('igdLabel', NULL, array('label' => 'Nom :', 'attr' => array('class' => 'form-control')))
             ->add('igdDescription', NULL, array('label' => 'Description :', 'attr' => array('class' => 'form-control')))
-            ->add('igdIllustration', NULL, array('label' => 'Illustration :', 'attr' => array('class' => 'form-control')))
+            ->add('igdIllustration', new ImageType(), array('label' => 'Illustration de l\'ingrédient :', 'attr' => array('class' => 'form-control')))
             ->add('igdValide', 'choice', array(
                     'choices'   => array(1 => 'Validé', 0 => 'En Attente'),
                     'required'  => true,

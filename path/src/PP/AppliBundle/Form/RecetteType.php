@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use PP\AppliBundle\Entity\Categorie;
 use PP\AppliBundle\Entity\Ingredient;
 use PP\AppliBundle\Form\IngredientUniteType;
+use PP\AppliBundle\Form\ImageType;
 
 class RecetteType extends AbstractType
 {
@@ -39,7 +40,7 @@ class RecetteType extends AbstractType
       				'required'  => true,
       				'label'		=> 'Statut :'
       			))
-            ->add('rctIllustration', 'text', array('label' => 'Illustration de la recette :'))
+            ->add('rctIllustration', new ImageType(), array('label' => 'Illustration de la recette :'))
             ->add('rctNbpersonne', 'integer', array('label' => 'Nombre de personnes :'))
             ->add('categorie', 'entity', array(
               'class'    => 'PPAppliBundle:Categorie',

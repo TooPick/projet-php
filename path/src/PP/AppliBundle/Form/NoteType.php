@@ -1,28 +1,28 @@
 <?php
 
-namespace PP\UserBundle\Form;
+namespace PP\AppliBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use PP\AppliBundle\Form\ImageType;
-
-class UtilisateurType extends AbstractType
+class NoteType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array('label' => 'Nom d\'utilisateur :'))
-            ->add('password', 'password', array('label' => 'Mot de passe :'))
-            ->add('utiMail', 'email', array('label' => 'Email :'))
-            ->add('utiNom', 'text', array('label' => 'Nom :'))
-            ->add('utiPrenom', 'text', array('label' => 'Prénom :'))
-			->add('inscription', 'submit')
+            ->add('note', 'choice', array(
+                'label'         => 'Noter la recette :',
+                'choices'       => array(0 => '0', 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5'),
+                'required'      => false,
+                'expanded'      => false,
+                'multiple'      => false,
+                'empty_value'   => false
+            ))
         ;
     }
     
@@ -32,7 +32,7 @@ class UtilisateurType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PP\UserBundle\Entity\Utilisateur'
+            'data_class' => 'PP\AppliBundle\Entity\Note'
         ));
     }
 
@@ -41,6 +41,6 @@ class UtilisateurType extends AbstractType
      */
     public function getName()
     {
-        return 'pp_userbundle_utilisateur';
+        return 'pp_applibundle_note';
     }
 }

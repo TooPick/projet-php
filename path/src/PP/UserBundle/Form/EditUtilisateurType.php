@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use PP\AppliBundle\Form\ImageType;
+
 class EditUtilisateurType extends AbstractType
 {
         /**
