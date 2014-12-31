@@ -21,10 +21,21 @@ class AppliController extends Controller
 		
 		$em = $this->getDoctrine()->getManager();
 		$recetteRepository = $em->getRepository('PPAppliBundle:Recette');
+
+		$noteRepository = $em->getRepository('PPAppliBundle:Note');
+
+		$populaire = $noteRepository->populaire();
 		
 		$recettes = $recetteRepository->findBy(array('rctStatut' => 'finale'), array('rctDate' => 'DESC'));
+
+		$all = $recetteRepository->findAll();
+		$nbHasard = array_rand($all, 3);
+
+		$tab = array();
+		foreach ($nbHasard as $id)
+			$tab[] = $all[$id];
 		
-        return $this->render('PPAppliBundle:Pages:index.html.twig', array('recettes' => $recettes));
+        return $this->render('PPAppliBundle:Pages:index.html.twig', array('recettes' => $recettes, 'hasard' => $tab, 'populaire' => $populaire, 'all' => $all));
     }
 	
 	public function recetteListeAction($idCat)

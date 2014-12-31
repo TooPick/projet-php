@@ -136,8 +136,8 @@ class Image
             $this->setNameTemp($this->getUrl());
             $this->file = $file;
 
-            $this->setUrl(NULL);
-            $this->setAlt(NULL);
+            $this->setUrl($this->file->guessExtension());
+            $this->setAlt($this->file->getClientOriginalName());
         }
     }
 

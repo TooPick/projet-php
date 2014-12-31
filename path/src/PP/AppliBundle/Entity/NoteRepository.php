@@ -23,4 +23,13 @@ class NoteRepository extends EntityRepository
             )->setParameter('recette', '%'.$recette->getId().'%')
             ->getSingleResult();
 	}
+
+	public function populaire()
+	{
+		return $this->getEntityManager()
+            ->createQuery(
+                "SELECT IDENTITY(n.recette), AVG(n.note) AS nb FROM PPAppliBundle:Note n GROUP BY n.recette ORDER BY nb DESC"
+            )
+            ->getResult();
+	}
 }
