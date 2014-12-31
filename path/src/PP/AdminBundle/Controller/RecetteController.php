@@ -19,6 +19,16 @@ class RecetteController extends Controller
 		
 		return $this->render('PPAdminBundle:Recette:attente.html.twig', array('recettes' => $recettes));
 	}
+
+	public function brouillonAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+		$recetteRepository = $em->getRepository('PPAppliBundle:Recette');
+		
+		$recettes = $recetteRepository->findBy(array('rctStatut' => 'brouillon'));
+		
+		return $this->render('PPAdminBundle:Recette:brouillon.html.twig', array('recettes' => $recettes));
+	}
 	
 	public function editAction($id)
 	{

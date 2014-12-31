@@ -22,6 +22,10 @@ pp_admin_recettesAttente:
     path:    /recette/attente
     defaults: { _controller: PPAdminBundle:Recette:attente }
 
+pp_admin_recettesBrouillon:
+    path:    /recette/brouillon
+    defaults: { _controller: PPAdminBundle:Recette:brouillon }
+
 pp_admin_editerRecette:
     path:    /recette/edit/{id}
     defaults: { _controller: PPAdminBundle:Recette:edit }
