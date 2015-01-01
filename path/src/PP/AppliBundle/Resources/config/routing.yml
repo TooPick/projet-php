@@ -22,6 +22,12 @@ pp_appli_nouveautes:
     requirements:
         id:    \d+
 
+pp_appli_populaire:
+    path:    /populaire/{page}
+    defaults: { _controller: PPAppliBundle:Appli:populaire, page: 1}
+    requirements:
+        id:    \d+
+
 pp_appli_ajouterRecette:
     path:    /user/recette/ajouter
     defaults: { _controller: PPAppliBundle:Recette:ajouterRecette }

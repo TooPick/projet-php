@@ -178,4 +178,30 @@ class AppliController extends Controller
 
 		return $this->render('PPAppliBundle:Pages:nouveautes.html.twig', array('recettes' =>$recettes, 'page' => $page, 'nombrePages' => $nombrePages));
 	}
+
+	public function populaireAction($page)
+	{
+		if($page == 0)
+		{
+			$url = $this->generateUrl('pp_appli_populaire');
+			return $this->redirect($url);
+		}
+
+		$em = $this->getDoctrine()->getManager();
+		$recetteRepository = $em->getRepository('PPAppliBundle:Recette');
+		$noteRepository = $em->getRepository('PPAppliBundle:Note');
+
+		$populaire = $noteRepository->populaire();
+		
+		$recettes = $recetteRepository->findAll();
+		
+		$nombrePages = ceil(count($recettes)/9);
+		if($page > $nombrePages)
+		{
+			$url = $this->generateUrl('pp_appli_populaire', array('page' => $nombrePages));
+			return $this->redirect($url);
+		}
+
+		return $this->render('PPAppliBundle:Pages:populaire.html.twig', array('populaire' => $populaire, 'recettes' =>$recettes, 'page' => $page, 'nombrePages' => $nombrePages));
+	}
 }
