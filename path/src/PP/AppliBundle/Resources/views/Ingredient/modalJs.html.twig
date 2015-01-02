@@ -1,0 +1,13 @@
+<script>
+	$('#modalSuppression').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget)
+	  var path = button.data('path')
+	  var modal = $(this)
+	  modal.find('.modal-body input').val(path)
+	})
+	
+	$('#suppression').click(function() {
+		var path = $('#path').val()
+		window.location.replace(path);
+	});
+</script>

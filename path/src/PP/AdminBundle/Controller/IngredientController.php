@@ -49,6 +49,11 @@ class IngredientController extends Controller
 				$em->persist($ingredient);
 				$em->flush();
 
+                $this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'L\'ingrédient a bien été modifié !'
+                );
+
 				$url = $this->generateUrl('pp_admin_ingredientsAttente');
 				return $this->redirect($url);
 			}
@@ -72,6 +77,11 @@ class IngredientController extends Controller
 
         $em->remove($ingredient);
         $em->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'alert-success',
+            'L\'ingrédient a bien été supprimé !'
+        );
 
         $url = $this->generateUrl('pp_admin_ingredientsListe');
         return $this->redirect($url);

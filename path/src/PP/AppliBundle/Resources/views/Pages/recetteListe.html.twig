@@ -21,13 +21,37 @@
 		<hr>
 		<h3>{{ categories.catLabel }}</h3>
 		<a href="{{ path('pp_appli_recetteListe') }}">Retour à la liste des catégories</a>
-		<table>
-			{% for recette in recettes %}
-				<tr>
-					<td><a href="{{ path('pp_appli_recetteDetail', {'id':recette.id}) }}"><h3>{{ recette.rctTitre }}</h3></a></td>
-				</tr>
-			{% endfor %}
-		</table>
+		<br /><br />
+		{% for recette in recettes|slice((page*9)-9, page*9) %}
+			{% if loop.first %}
+				<div class="row">
+			{% endif %}
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}"><img src="{{ asset('uploads/images/' ~ recette.utilisateur.username ~ '/recettes/' ~ recette.rctIllustration.id ~ '.' ~ recette.rctIllustration.url) }}"></a>
+						<h3 class="text-center"><a href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}">{{ recette.rctTitre }}</a></h3>
+					</div>
+				</div>
+			{% if loop.last %}
+				</div>
+			{% else %}
+				{% if loop.index%3 == 0 %}
+					</div>
+					<div class="row">
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+		<div class="row">
+			<div class="text-center">
+				<ul class="pagination">
+					<li><a href="{{ path('pp_appli_recetteListe', {idCat: idCat, page: page-1}) }}">&laquo;</a></li>
+					{% for i in 1..nombrePages %}
+						<li {% if page == i %}class="active"{% endif %}><a href="{{ path('pp_appli_recetteListe', {idCat: idCat, page: i}) }}">{{ i }}</a></li>
+					{% endfor %}
+					<li><a href="{{ path('pp_appli_recetteListe', {idCat: idCat, page: page+1}) }}">&raquo;</a></li>
+				</ul>
+			</div>
+		</div>
 	{% endif %}
 	
 {% endblock %}

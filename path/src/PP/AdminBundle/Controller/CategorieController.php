@@ -41,6 +41,11 @@ class CategorieController extends Controller
 				$em->persist($categorie);
 				$em->flush();
 
+				$this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'La catégorie a bien été ajoutée !'
+                );
+
 				$url = $this->generateUrl('pp_admin_listeCategories');
 				return $this->redirect($url);
 			}
@@ -67,6 +72,11 @@ class CategorieController extends Controller
 				$em->persist($categorie);
 				$em->flush();
 
+				$this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'La catégorie a bien été modifiée !'
+                );
+
 				$url = $this->generateUrl('pp_admin_listeCategories');
 				return $this->redirect($url);
 			}
@@ -83,6 +93,11 @@ class CategorieController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->remove($categorie);
 		$em->flush();
+
+		$this->get('session')->getFlashBag()->add(
+            'alert-success',
+            'La catégorie a bien été supprimée !'
+        );
 
 		$url = $this->generateUrl('pp_admin_listeCategories');
 		return $this->redirect($url);

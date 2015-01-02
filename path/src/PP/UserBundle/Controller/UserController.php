@@ -51,6 +51,11 @@ class UserController extends Controller
 				$em->persist($image);
 				$em->flush();
 
+				$this->get('session')->getFlashBag()->add(
+		            'alert-success',
+		            'Votre avatar a bien été modifié !'
+		        );
+
 				$url = $this->generateUrl('pp_user_profil');
 				return $this->redirect($url);
 			}
@@ -77,6 +82,11 @@ class UserController extends Controller
 				//$utilisateur->setRoles(array("ROLE_ADMIN"));
 				$em->persist($utilisateur);
 				$em->flush();
+
+				$this->get('session')->getFlashBag()->add(
+		            'alert-success',
+		            'L\'inscription a bien été effectuée !'
+		        );
 				
 				$url = $this->generateUrl('pp_appli_index');
 				return $this->redirect($url);				
@@ -125,6 +135,11 @@ class UserController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($user);
 				$em->flush();
+
+				$this->get('session')->getFlashBag()->add(
+		            'alert-success',
+		            'Votre profil a bien été modifié !'
+		        );
 				
 				$url = $this->generateUrl('pp_user_profil');
 				return $this->redirect($url);
@@ -152,6 +167,11 @@ class UserController extends Controller
 					$em = $this->getDoctrine()->getManager();
 					$em->remove($user);
 					$em->flush();
+
+					$this->get('session')->getFlashBag()->add(
+			            'alert-success',
+			            'Votre compte a bien été supprimé !'
+			        );
 
 					$url = $this->generateUrl('pp_appli_index');
 					return $this->redirect($url);

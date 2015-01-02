@@ -48,6 +48,11 @@ class UniteController extends Controller
 				$em->persist($unite);
 				$em->flush();
 
+                $this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'L\'unité a bien été modifiée !'
+                );
+
 				$url = $this->generateUrl('pp_admin_unitesAttente');
 				return $this->redirect($url);
 			}
@@ -71,6 +76,11 @@ class UniteController extends Controller
 
         $em->remove($unite);
         $em->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'alert-success',
+            'L\'unité a bien été supprimée !'
+        );
 
         $url = $this->generateUrl('pp_admin_unitesListe');
         return $this->redirect($url);

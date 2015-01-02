@@ -38,10 +38,11 @@ class AppliController extends Controller
         return $this->render('PPAppliBundle:Pages:index.html.twig', array('recettes' => $recettes, 'hasard' => $tab, 'populaire' => $populaire, 'all' => $all));
     }
 	
-	public function recetteListeAction($idCat)
+	public function recetteListeAction($idCat, $page)
 	{
 		$categories = NULL;
 		$recettes = NULL;
+		$nombrePages = NULL;
 		
 		$em = $this->getDoctrine()->getManager();
 		$categorieRepository = $em->getRepository('PPAppliBundle:Categorie');
@@ -60,10 +61,17 @@ class AppliController extends Controller
 			}
 			
 			$recetteRepository = $em->getRepository('PPAppliBundle:Recette');
-			$recettes = $recetteRepository->findBy(array('categorie' => $idCat, 'rctStatut' => 'finale'));
+			$recettes = $recetteRepository->findBy(array('categorie' => $idCat, 'rctStatut' => 'finale'), array('rctTitre' => 'ASC'));
+
+			$nombrePages = ceil(count($recettes)/9);
+			if($page > $nombrePages)
+			{
+				$url = $this->generateUrl('pp_appli_recetteListe', array('idCat' => $idCat, 'page' => $nombrePages));
+				return $this->redirect($url);
+			}
 		}
 	
-		return $this->render('PPAppliBundle:Pages:recetteListe.html.twig', array('idCat' => $idCat, 'categories' => $categories, 'recettes' => $recettes));
+		return $this->render('PPAppliBundle:Pages:recetteListe.html.twig', array('idCat' => $idCat, 'categories' => $categories, 'recettes' => $recettes, 'page' => $page, 'nombrePages' => $nombrePages));
 	}
 	
 	public function recetteDetailAction(Recette $recette = NULL)
@@ -103,6 +111,11 @@ class AppliController extends Controller
 					$note->setUtilisateur($this->getUser());
 					$em->persist($note);
 					$em->flush();
+
+					$this->get('session')->getFlashBag()->add(
+	                    'alert-success',
+	                    'Votre note a bien été sauvegardée !'
+	                );
 					
 					$url = $this->generateUrl('pp_appli_recetteDetail', array('id' => $recette->getId()));
 					return $this->redirect($url);
@@ -118,6 +131,11 @@ class AppliController extends Controller
 					$commentaire->setUtilisateur($this->getUser());
 					$em->persist($commentaire);
 					$em->flush();
+
+					$this->get('session')->getFlashBag()->add(
+	                    'alert-success',
+	                    'Votre commentaire a bien été ajouté !'
+	                );
 					
 					$url = $this->generateUrl('pp_appli_recetteDetail', array('id' => $recette->getId()));
 					return $this->redirect($url);

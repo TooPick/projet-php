@@ -45,6 +45,11 @@ class RecetteController extends Controller
 				$recette->getRctIllustration()->setUtilisateur($this->getUser());
 				$em->persist($recette);
 				$em->flush();
+
+				$this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'La recette a bien été sauvegardée !'
+                );
 				
 				$url = $this->generateUrl('pp_appli_editRecette', array('id' => $recette->getId()));
 				return $this->redirect($url);
@@ -83,6 +88,11 @@ class RecetteController extends Controller
 				$recette->getRctIllustration()->setUtilisateur($this->getUser());
 				$em->persist($recette);
 				$em->flush();
+
+				$this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'La recette a bien été sauvegardée !'
+                );
 				
 				$url = $this->generateUrl('pp_appli_editRecette', array('id' => $recette->getId()));
 				return $this->redirect($url);
@@ -99,6 +109,11 @@ class RecetteController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($recette);
 			$em->flush();
+
+			$this->get('session')->getFlashBag()->add(
+                'alert-success',
+                'La recette a bien été supprimée !'
+            );
 		}
 	
 		$url = $this->generateUrl('pp_user_profil');
@@ -123,6 +138,11 @@ class RecetteController extends Controller
 				$em->persist($ingredient);
 				$em->flush();
 
+				$this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'L\'ingrédient a bien été ajouté !'
+                );
+
 				$url = $this->generateUrl('pp_user_profil');
 				return $this->redirect($url);
 			}
@@ -145,6 +165,11 @@ class RecetteController extends Controller
 				$em->persist($unite);
 				$em->flush();
 
+				$this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'L\'unité a bien été ajoutée !'
+                );
+
 				$url = $this->generateUrl('pp_user_profil');
 				return $this->redirect($url);
 			}
@@ -165,6 +190,11 @@ class RecetteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($ing_uni);
 				$em->flush();
+
+				$this->get('session')->getFlashBag()->add(
+                    'alert-success',
+                    'L\'ingrédient a bien été ajouté à la recette !'
+                );
 
 				$url = $this->generateUrl('pp_user_profil');
 				return $this->redirect($url);

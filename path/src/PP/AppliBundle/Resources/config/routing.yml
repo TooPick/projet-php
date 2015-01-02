@@ -3,8 +3,11 @@ pp_appli_index:
     defaults: { _controller: PPAppliBundle:Appli:index }
 
 pp_appli_recetteListe:
-    path:    /recettes/{idCat}
-    defaults: { _controller: PPAppliBundle:Appli:recetteListe, idCat:0 }
+    path:    /recettes/{idCat}/{page}
+    defaults: { _controller: PPAppliBundle:Appli:recetteListe, idCat:0, page:1 }
+    requirements:
+        idCat:    \d+
+        page:    \d+
 
 pp_appli_recetteDetail:
     path:    /recette/detail/{id}
@@ -20,13 +23,13 @@ pp_appli_nouveautes:
     path:    /nouveautes/{page}
     defaults: { _controller: PPAppliBundle:Appli:nouveautes, page:1 }
     requirements:
-        id:    \d+
+        page:    \d+
 
 pp_appli_populaire:
     path:    /populaire/{page}
     defaults: { _controller: PPAppliBundle:Appli:populaire, page: 1}
     requirements:
-        id:    \d+
+        page:    \d+
 
 pp_appli_ajouterRecette:
     path:    /user/recette/ajouter
@@ -44,9 +47,19 @@ pp_appli_supprimerRecette:
     requirements:
         id:    \d+
 
+pp_appli_listeIngredient:
+    path:    /user/ingredient/liste
+    defaults: { _controller: PPAppliBundle:Ingredient:liste }
+
 pp_appli_ajouterIngredient:
     path:    /user/recette/ingredient/ajouter
     defaults: { _controller: PPAppliBundle:Recette:ajouterIngredient }
+
+pp_appli_editionIngredient:
+    path:    /user/ingredient/edit/{id}
+    defaults: { _controller: PPAppliBundle:Ingredient:edition }
+    requirements:
+        id:    \d+
 
 pp_appli_ajouterUnite:
     path:    /user/recette/unite/ajouter

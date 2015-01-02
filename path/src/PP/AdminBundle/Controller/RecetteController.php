@@ -55,6 +55,11 @@ class RecetteController extends Controller
 				$recette->setRctDate(new \DateTime());
 				$em->persist($recette);
 				$em->flush();
+
+				$this->get('session')->getFlashBag()->add(
+		            'alert-success',
+		            'La recette a bien été modifiée !'
+		        );
 				
 				$url = $this->generateUrl('pp_admin_recettesAttente');
 				return $this->redirect($url);

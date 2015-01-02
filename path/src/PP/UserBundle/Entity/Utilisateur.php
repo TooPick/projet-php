@@ -88,7 +88,7 @@ class Utilisateur implements UserInterface
      * @ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Recette", mappedBy="utilisateur")
      */
     protected $recettes;
-	
+
 	public function __construct()
 	{
 		$this->roles = array('ROLE_USER');

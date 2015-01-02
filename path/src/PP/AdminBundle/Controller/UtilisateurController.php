@@ -61,6 +61,11 @@ class UtilisateurController extends Controller
 			{
 				$em->persist($user);
 				$em->flush();
+
+				$this->get('session')->getFlashBag()->add(
+		            'alert-success',
+		            'L\'utilisateur a bien été modifié !'
+		        );
 				
 				$url = $this->generateUrl('pp_admin_listeUtilisateurs');
 				return $this->redirect($url);
