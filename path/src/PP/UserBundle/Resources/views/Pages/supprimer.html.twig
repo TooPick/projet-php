@@ -1,0 +1,27 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Suppression du compte</h3>
+	<a href="{{ path('pp_user_profil') }}">Retour au profil.</a>
+	<hr>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center">
+			<p><strong>Attention la suppression de votre compte utilisateur est une opération irréversible.</strong></p>
+			<p>Etes-vous vraiment sûr de vouloir continuer ?</p>
+			<form method="POST" class="form-horizontal">
+				<div class="form-group">
+					<label class="radio-inline">
+						<input type="radio" name="choix" value="0" checked> Non
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="choix" value="1"> Oui
+					</label>
+				</div>
+
+				<div class="form-group">
+					<input type="submit" value="Valider" class="btn btn-danger" />
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

@@ -5,3 +5,7 @@ pp_user_profil:
 pp_user_editerProfil:
     path:    /editerProfil
     defaults: { _controller: PPUserBundle:User:editerProfil }
+
+pp_user_supprimerUtilisateur:
+    path:    /supprimer
+    defaults: { _controller: PPUserBundle:User:supprimer }

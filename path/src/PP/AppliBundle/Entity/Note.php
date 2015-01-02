@@ -29,8 +29,8 @@ class Note
     private $note;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur", inversedBy="notes")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $utilisateur;
 

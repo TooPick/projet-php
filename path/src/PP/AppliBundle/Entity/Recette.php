@@ -105,8 +105,8 @@ class Recette
 	private $categorie;
 	
 	/** 
-	 * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur")
-	 * @ORM\JoinColumn(nullable=false)
+	 * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur", inversedBy="recettes")
+	 * @ORM\JoinColumn(nullable=false, onDelete="cascade")
 	 */
 	private $utilisateur;
 

@@ -29,8 +29,8 @@ class Note
     private $note;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur", inversedBy="Note")
+     * @ORM\JoinColumn(nullable=false, onDelete="SET NULL")
      */
     private $utilisateur;
 
@@ -94,5 +94,28 @@ class Note
     public function getUtilisateur()
     {
         return $this->utilisateur;
+    }
+
+    /**
+     * Set recette
+     *
+     * @param \PP\AppliBundle\Entity\Recette $recette
+     * @return Note
+     */
+    public function setRecette(\PP\AppliBundle\Entity\Recette $recette)
+    {
+        $this->recette = $recette;
+
+        return $this;
+    }
+
+    /**
+     * Get recette
+     *
+     * @return \PP\AppliBundle\Entity\Recette 
+     */
+    public function getRecette()
+    {
+        return $this->recette;
     }
 }

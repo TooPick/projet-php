@@ -134,4 +134,38 @@ class UserController extends Controller
 		return $this->render('PPUserBundle:Pages:editerProfil.html.twig', array('form' => $form->createView()));
 	}
 
+	public function supprimerAction()
+	{
+		$request = $this->getRequest();
+		if($request->getMethod() == "POST")
+		{
+			if(isset($_POST['choix']))
+			{
+				extract($_POST);
+				if($choix)
+				{
+					$user = $this->getUser();
+
+					$this->get('security.context')->setToken(null);
+					$this->get('request')->getSession()->invalidate();
+
+					$em = $this->getDoctrine()->getManager();
+					$em->remove($user);
+					$em->flush();
+
+					$url = $this->generateUrl('pp_appli_index');
+					return $this->redirect($url);
+				}
+				else
+				{
+					$url = $this->generateUrl('pp_user_profil');
+					return $this->redirect($url);
+				}
+			}
+		}
+
+
+		return $this->render('PPUserBundle:Pages:supprimer.html.twig');
+	}
+
 }

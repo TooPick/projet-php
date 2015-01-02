@@ -42,7 +42,7 @@ class Commentaire
 	private $recette;
 	
 	/** 
-	 * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur", inversedBy="commentaires")
+	 * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur", inversedBy="Commentaire")
 	 * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
 	 */
 	private $utilisateur;

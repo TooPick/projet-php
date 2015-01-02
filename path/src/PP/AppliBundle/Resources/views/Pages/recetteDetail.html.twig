@@ -109,7 +109,7 @@
 	
 		<div class="list-group">
 			{% for commentaire in commentaires %}
-				<li class="list-group-item">Le {{ commentaire.comDate|date('d/m/Y à H:i') }} par <strong>{{ commentaire.utilisateur.username }}</strong> : {{ commentaire.comTexte }}</li>
+				<li class="list-group-item">Le {{ commentaire.comDate|date('d/m/Y à H:i') }} par <strong>{% if commentaire.utilisateur.username is defined %}{{ commentaire.utilisateur.username }}{% else %}<em>Utilisateur supprimé</em>{% endif %}</strong> : {{ commentaire.comTexte }}</li>
 			{% endfor %}
 		</div>
 	

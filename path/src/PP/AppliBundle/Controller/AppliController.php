@@ -28,7 +28,7 @@ class AppliController extends Controller
 		
 		$recettes = $recetteRepository->findBy(array('rctStatut' => 'finale'), array('rctDate' => 'DESC'));
 
-		$all = $recetteRepository->findAll();
+		$all = $recetteRepository->findBy(array('rctStatut' => 'finale'), array('rctDate' => 'DESC'));
 		$nbHasard = array_rand($all, 3);
 
 		$tab = array();

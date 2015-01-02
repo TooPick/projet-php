@@ -106,7 +106,7 @@ class Recette
 	
 	/** 
 	 * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur")
-	 * @ORM\JoinColumn(nullable=false)
+	 * @ORM\JoinColumn(nullable=false, onDelete="remove")
 	 */
 	private $utilisateur;
 
@@ -114,11 +114,6 @@ class Recette
      * @ORM\ManyToMany(targetEntity="PP\AppliBundle\Entity\IngredientUnite", cascade="persist")
      */
     private $ingredients;
-
-    /**
-     * @ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Note", mappedBy="Recette", cascade="persist")
-     */
-    private $note;
 	
 	public function __construct()
 	{

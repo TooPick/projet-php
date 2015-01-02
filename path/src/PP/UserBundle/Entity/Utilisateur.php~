@@ -70,23 +70,23 @@ class Utilisateur implements UserInterface
 	private $roles;
 
     /**
-     * @ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Commentaire", mappedBy="utilisateur")
-     */
+    *@ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Commentaire", mappedBy="Utilisateur")
+    */
     protected $commentaires;
 
     /**
-     * @ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Note", mappedBy="utilisateur")
-     */
+    *@ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Note", mappedBy="Utilisateur")
+    */
     protected $notes;
 
     /**
-     * @ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Image", mappedBy="utilisateur")
-     */
+    *@ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Image", mappedBy="Utilisateur")
+    */
     protected $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Recette", mappedBy="utilisateur")
-     */
+    *@ORM\OneToMany(targetEntity="PP\AppliBundle\Entity\Recette", mappedBy="Utilisateur")
+    */
     protected $recettes;
 	
 	public function __construct()
@@ -366,38 +366,5 @@ class Utilisateur implements UserInterface
     public function getImages()
     {
         return $this->images;
-    }
-
-    /**
-     * Add recettes
-     *
-     * @param \PP\AppliBundle\Entity\Recette $recettes
-     * @return Utilisateur
-     */
-    public function addRecette(\PP\AppliBundle\Entity\Recette $recettes)
-    {
-        $this->recettes[] = $recettes;
-
-        return $this;
-    }
-
-    /**
-     * Remove recettes
-     *
-     * @param \PP\AppliBundle\Entity\Recette $recettes
-     */
-    public function removeRecette(\PP\AppliBundle\Entity\Recette $recettes)
-    {
-        $this->recettes->removeElement($recettes);
-    }
-
-    /**
-     * Get recettes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecettes()
-    {
-        return $this->recettes;
     }
 }

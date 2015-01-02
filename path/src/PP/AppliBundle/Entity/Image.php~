@@ -43,7 +43,7 @@ class Image
     private $file;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="PP\UserBundle\Entity\Utilisateur", inversedBy="Image")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $utilisateur;
