@@ -3,8 +3,8 @@ pp_user_profil:
     defaults: { _controller: PPUserBundle:User:profil }
 
 pp_user_editerProfil:
-    path:    /editerProfil
-    defaults: { _controller: PPUserBundle:User:editerProfil }
+    path:    /editer
+    defaults: { _controller: PPUserBundle:User:editer }
 
 pp_user_supprimerUtilisateur:
     path:    /supprimer

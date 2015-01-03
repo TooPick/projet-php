@@ -16,8 +16,10 @@ pp_appli_recetteDetail:
         id:    \d+
 
 pp_appli_search:
-    path:    /search
-    defaults: { _controller: PPAppliBundle:Appli:search }
+    path:    /search/{page}
+    defaults: { _controller: PPAppliBundle:Appli:search, page:1 }
+    requirements:
+        page:    \d+
 
 pp_appli_nouveautes:
     path:    /nouveautes/{page}

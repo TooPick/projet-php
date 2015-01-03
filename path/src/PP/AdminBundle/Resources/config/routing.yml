@@ -95,7 +95,3 @@ pp_admin_supprCategorie:
     defaults: { _controller: PPAdminBundle:Categorie:suppr }
     requirements:
         id:    \d+
-
-pp_test:
-    path:    /test
-    defaults: { _controller: PPAdminBundle:Categorie:test }

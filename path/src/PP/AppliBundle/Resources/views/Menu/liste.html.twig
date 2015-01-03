@@ -15,10 +15,45 @@
 			{% for menu in menus %}
 				<tr>
 					<td>{{ menu.nom }}</td>
-					<td><a class="btn btn-primary" href="{{ path('pp_appli_editerRecettesMenu', {id: menu.id}) }}">Editer la liste des recettes</a> <a class="btn btn-primary" href="{{ path('pp_appli_listeIngredientsMenu', {id: menu.id}) }}">Voir la liste des ingrédients</a> <a class="btn btn-danger" href="{{ path('pp_appli_supprimerMenu', {id: menu.id}) }}">Supprimer</a></td>
+					<td><a class="btn btn-primary" href="{{ path('pp_appli_editerRecettesMenu', {id: menu.id}) }}">Editer la liste des recettes</a> <a class="btn btn-primary" href="{{ path('pp_appli_listeIngredientsMenu', {id: menu.id}) }}">Voir la liste des ingrédients</a> <button class="btn btn-danger" data-toggle="modal" data-target="#modalSuppression" data-path="{{ path('pp_appli_supprimerMenu', {id: menu.id}) }}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Supprimer</button></td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
+
+	<div class="modal fade" id="modalSuppression" role="dialog" aria-labelledby="confirmationSupression" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+					<h4 class="modal-title" id="confirmationSupression">Confirmation de suppression</h4>
+				</div>
+				
+				<div class="modal-body">
+					<p>Voulez-vous vraiment supprimer ce menu ?</p>
+					<div class="text-right">
+						<button id="suppression" class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Supprimer</button> <button class="btn btn-default" type="button" class="close" data-dismiss="modal">Annuler</button>
+					</div>
+					<input hidden type="text" id="path" />
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	{% block javascripts %}
+		<script>
+			$('#modalSuppression').on('show.bs.modal', function (event) {
+			  var button = $(event.relatedTarget)
+			  var path = button.data('path')
+			  var modal = $(this)
+			  modal.find('.modal-body input').val(path)
+			})
+			
+			$('#suppression').click(function() {
+				var path = $('#path').val()
+				window.location.replace(path);
+			});
+		</script>
+	{% endblock %}
 	
 {% endblock %}

@@ -102,32 +102,4 @@ class CategorieController extends Controller
 		$url = $this->generateUrl('pp_admin_listeCategories');
 		return $this->redirect($url);
 	}
-
-
-
-
-
-	public function testAction()
-	{
-		$image = new Image();
-		$form = $this->createForm(new ImageType, $image);
-
-		$request = $this->getRequest();
-		if($request->getMethod() == "POST")
-		{
-			$form->bind($request);
-			if($form->isValid())
-			{
-				$image->setUtilisateur($this->getUser());
-				$image->setType('categorie');
-				//$image->preUpload();
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($image);
-				$em->flush();
-			}
-		}
-
-		return $this->render('PPAdminBundle:Categorie:test.html.twig', array('form' => $form->createView()));
-	}
-
 }

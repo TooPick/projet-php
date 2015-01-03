@@ -17,30 +17,38 @@ class RecetteAdminType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('rctTitre')
-            ->add('rctDescription')
-            ->add('rctTempsPreparation')
-            ->add('rctTempsCuisson')
-            ->add('rctTempsRepos')
-      			->add('rctDifficulte', 'choice', array(
-      				'choices'   => array('facile' => 'Facile', 'moyen' => 'Moyen', 'difficile' => 'Difficile'),
-      				'required'  => true,
-      			))
-      			->add('rctCout', 'choice', array(
-      				'choices'   => array('faible' => 'Faible', 'moyen' => 'Moyen', 'eleve' => 'Elevé'),
-      				'required'  => true,
-      			))
-      			->add('rctStatut', 'choice', array(
-      				'choices'   => array('brouillon' => 'Brouillon', 'soumise' => 'Mettre en attente de relecture', 'finale' => 'Publier'),
-      				'required'  => true,
-      			))
+            ->add('rctTitre', 'text', array('label' => 'Titre :'))
+            ->add('rctDescription', 'textarea', array('label' => 'Description :', 'attr' => array('rows' => 10)))
+            ->add('rctTempsPreparation', 'time', array('label' => 'Temps de préparation :'))
+            ->add('rctTempsCuisson', 'time', array('label' => 'Temps de cuisson :'))
+            ->add('rctTempsRepos', 'time', array('label' => 'Temps de repos :'))
+            ->add('rctDifficulte', 'choice', array(
+              'choices'   => array('facile' => 'Facile', 'moyen' => 'Moyen', 'difficile' => 'Difficile'),
+              'required'  => true,
+              'label'   => 'Difficulté :'
+            ))
+            ->add('rctCout', 'choice', array(
+              'choices'   => array('faible' => 'Faible', 'moyen' => 'Moyen', 'eleve' => 'Elevé'),
+              'required'  => true,
+              'label'   => 'Coût :'
+            ))
+            ->add('rctStatut', 'choice', array(
+              'choices'   => array('brouillon' => 'Brouillon', 'soumise' => 'Mettre en attente de relecture', 'finale' => 'Publier'),
+              'required'  => true,
+              'label'   => 'Statut :'
+            ))
             ->add('rctIllustration', new ImageType(), array('label' => 'Illustration de la recette :'))
-            ->add('rctNbpersonne')
+            ->add('rctNbpersonne', 'integer', array('label' => 'Nombre de personnes :'))
             ->add('categorie', 'entity', array(
               'class'    => 'PPAppliBundle:Categorie',
-              'property' => 'catLabel'
+              'property' => 'catLabel',
+              'label'   => 'Catégorie de la recette :'
             ))
-			     ->add('valider', 'submit')
+            ->add('ingredients', 'collection', array(
+              'type'          => new IngredientUniteType(),
+              'allow_add'     => true,
+              'allow_delete'  => true
+            ))
         ;
     }
     

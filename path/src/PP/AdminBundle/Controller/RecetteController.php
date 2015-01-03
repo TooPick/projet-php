@@ -66,7 +66,7 @@ class RecetteController extends Controller
 			}
 		}
 		
-		return $this->render('PPAdminBundle:Recette:edit.html.twig', array('form' => $form->createView()));
+		return $this->render('PPAdminBundle:Recette:edit.html.twig', array('form' => $form->createView(), 'recette' => $recette));
 	}
 	
 	public function listeAction($recette)

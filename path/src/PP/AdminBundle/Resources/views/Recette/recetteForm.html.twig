@@ -1,0 +1,107 @@
+{{ form_start(form) }}
+	{{ form_errors(form) }}
+	
+	<div class="row">
+		<div class="col-md-8">
+		
+			<div class="form-group">
+				{{ form_errors(form.rctTitre) }}
+				{{ form_label(form.rctTitre) }}
+				{{ form_widget(form.rctTitre, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.rctDescription) }}
+				{{ form_label(form.rctDescription) }}
+				{{ form_widget(form.rctDescription, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="row">
+			
+				<div class="col-md-6">
+				
+					<div class="form-group">
+						{{ form_errors(form.rctDifficulte) }}
+						{{ form_label(form.rctDifficulte) }}
+						{{ form_widget(form.rctDifficulte, {attr: {class: 'form-control'}}) }}
+					</div>
+					
+					<div class="form-group">
+						{{ form_errors(form.rctCout) }}
+						{{ form_label(form.rctCout) }}
+						{{ form_widget(form.rctCout, {attr: {class: 'form-control'}}) }}
+					</div>
+				
+				</div>
+				
+				<div class="col-md-6">
+					
+					<div class="form-group">
+						{{ form_errors(form.rctNbpersonne) }}
+						{{ form_label(form.rctNbpersonne) }}
+						{{ form_widget(form.rctNbpersonne, {attr: {class: 'form-control'}}) }}
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.categorie) }}
+				{{ form_label(form.categorie) }}
+				{{ form_widget(form.categorie, {attr: {class: 'form-control'}}) }}
+			</div>
+		
+		</div>
+		
+		<div class="col-md-4">
+		
+			<div class="form-group">
+				{{ form_errors(form.rctStatut) }}
+				{{ form_label(form.rctStatut) }}
+				{{ form_widget(form.rctStatut, {attr: {class: 'form-control'}}) }}
+			</div>
+		
+			<div class="form-group">
+				{{ form_errors(form.rctTempsPreparation) }}
+				{{ form_label(form.rctTempsPreparation) }}
+				{{ form_widget(form.rctTempsPreparation, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.rctTempsCuisson) }}
+				{{ form_label(form.rctTempsCuisson) }}
+				{{ form_widget(form.rctTempsCuisson, {attr: {class: 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+				{{ form_errors(form.rctTempsRepos) }}
+				{{ form_label(form.rctTempsRepos) }}
+				{{ form_widget(form.rctTempsRepos, {attr: {class: 'form-control'}}) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_errors(form.rctIllustration.file) }}
+				{{ form_label(form.rctIllustration.file) }}
+				{{ form_widget(form.rctIllustration.file, {attr: {class: 'form-control'}}) }}
+				<hr />
+				<label>Prévisualisation :</label>
+				{% if recette.rctIllustration != NULL %}
+					<img src="{{ asset('uploads/images/' ~ recette.utilisateur.username ~ '/recettes/' ~ recette.rctIllustration.id ~ '.' ~ recette.rctIllustration.url) }}" width='250'>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		
+		<div class="form-group">
+			{{ form_label(form.ingredients) }}
+			{{ form_errors(form.ingredients) }}
+			{{ form_widget(form.ingredients) }}
+		</div>
+
+	</div>
+
+	<input class="btn btn-primary" type="submit" value="Enregistrer"/>
+{{ form_end(form) }}

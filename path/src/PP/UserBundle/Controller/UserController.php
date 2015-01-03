@@ -120,7 +120,7 @@ class UserController extends Controller
 		return $this->render('PPUserBundle:Pages:connexion.html.twig', array('last_username' => $session->get(SecurityContext::LAST_USERNAME), 'error' => $error));
 	}
 	
-	public function editerProfilAction()
+	public function editerAction()
 	{
 		$user = $this->getUser();
 		$form = $this->createForm(new EditUtilisateurType, $user);
@@ -146,7 +146,7 @@ class UserController extends Controller
 			}		
 		}
 	
-		return $this->render('PPUserBundle:Pages:editerProfil.html.twig', array('form' => $form->createView()));
+		return $this->render('PPUserBundle:Pages:editer.html.twig', array('form' => $form->createView()));
 	}
 
 	public function supprimerAction()

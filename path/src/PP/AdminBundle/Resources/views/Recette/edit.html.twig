@@ -3,5 +3,9 @@
 {% block body %}
 	<h3>Editer une recette</h3>
 	<hr>
-	{{ form(form) }}
+	{% include "PPAdminBundle:Recette:recetteForm.html.twig" %}
+{% endblock %}
+
+{% block javascripts %}
+	{% include "PPAdminBundle:Recette:javascript.html.twig" %}
 {% endblock %}

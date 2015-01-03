@@ -29,8 +29,12 @@ class AppliController extends Controller
 		
 		$recettes = $recetteRepository->findBy(array('rctStatut' => 'finale'), array('rctDate' => 'DESC'));
 
-		$all = $recetteRepository->findAll();
-		$nbHasard = array_rand($all, 3);
+		$all = $recetteRepository->findBy(array('rctStatut' => 'finale'));
+
+		if($all != NULL && count($all) >= 3)
+			$nbHasard = array_rand($all, 3);
+		else
+			$nbHasard = array();
 
 		$tab = array();
 		foreach ($nbHasard as $id)
@@ -150,7 +154,7 @@ class AppliController extends Controller
 		return $this->render('PPAppliBundle:Pages:recetteDetail.html.twig', array('recette' => $recette, 'form' => $form->createView(), 'commentaires' => $commentaires, 'noteForm' => $noteForm->createView(), 'noteUtilisateur' => $noteUtilisateur, 'createur' => $createur, 'noteGenerale' => $noteGenerale, 'menus' => $menus));
 	}
 
-	public function searchAction()
+	public function searchAction($page)
 	{
 		$request = $this->getRequest();
 		if($request->getMethod() == "POST")
