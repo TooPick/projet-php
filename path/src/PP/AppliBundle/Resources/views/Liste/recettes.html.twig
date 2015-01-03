@@ -1,0 +1,26 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Recettes correspondant à la liste d'ingrédients : {{ liste.nom}} <a class="btn btn-success" href="{{ path('pp_appli_ajouterListe') }}">Nouveau</a></h3>
+	<a href="{{ path('pp_user_profil') }}">Retour au profil</a>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Correspondances</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{% for recette in recettes %}
+				<tr>
+					<td>{{ recette[0].rctTitre }}</td>
+					<td>{{ recette[1] }}</td>
+					<td><a class="btn btn-primary" href="{{ path('pp_appli_recetteDetail', {id: recette[0].id}) }}">Voir la recette</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+{% endblock %}

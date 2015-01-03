@@ -1,0 +1,24 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Mes listes d'ingrédients <a class="btn btn-success" href="{{ path('pp_appli_ajouterListe') }}">Nouveau</a></h3>
+	<a href="{{ path('pp_user_profil') }}">Retour au profil</a>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{% for liste in listes %}
+				<tr>
+					<td>{{ liste.nom }}</td>
+					<td><a class="btn btn-primary" href="{{ path('pp_appli_gestionIngredientsListe', {id: liste.id}) }}">Editer la liste des ingrédients</a> <a class="btn btn-primary" href="{{ path('pp_appli_recettesListe', {id: liste.id}) }}">Voir la liste des recettes proposées</a> <a class="btn btn-danger" href="{{ path('pp_appli_supprimerListe', {id: liste.id}) }}">Supprimer</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+{% endblock %}

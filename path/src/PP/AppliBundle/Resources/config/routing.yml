@@ -108,6 +108,7 @@ pp_appli_supprimerRecetteMenu:
     defaults: { _controller: PPAppliBundle:Menu:supprimerRecette }
     requirements:
         id:    \d+
+        idRecette:    \d+
 
 pp_appli_editerRecettesMenu:
     path:    /user/menu/editerRecettes/{id}
@@ -121,6 +122,35 @@ pp_appli_listeIngredientsMenu:
     requirements:
         id:    \d+
 
-pp_appli_listeListe:
+pp_appli_listes:
     path:    /user/liste/liste
     defaults: { _controller: PPAppliBundle:Liste:liste }
+
+pp_appli_ajouterListe:
+    path:    /user/liste/ajouter
+    defaults: { _controller: PPAppliBundle:Liste:ajouter }
+
+pp_appli_supprimerListe:
+    path:    /user/liste/supprimer/{id}
+    defaults: { _controller: PPAppliBundle:Liste:supprimer }
+    requirements:
+        id:    \d+
+
+pp_appli_gestionIngredientsListe:
+    path:    /user/liste/gestion/{id}
+    defaults: { _controller: PPAppliBundle:Liste:gestion }
+    requirements:
+        id:    \d+
+
+pp_appli_supprimerIngredientListe:
+    path:    /user/liste/{id}/supprimerIngredient/{idIngredient}
+    defaults:    { _controller: PPAppliBundle:Liste:supprimerIngredient }
+    requirements:
+        id:    \d+
+        idIngredient:    \d+
+
+pp_appli_recettesListe:
+    path:    /user/liste/{id}/recettes
+    defaults: { _controller: PPAppliBundle:Liste:recettes }
+    requirements:
+        id:    \d+
