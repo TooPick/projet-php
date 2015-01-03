@@ -82,3 +82,45 @@ pp_appli_editionUnite:
 pp_appli_ajouterIngredientRecette:
     path:    /user/recette/ajouterIngredient
     defaults: { _controller: PPAppliBundle:Recette:ajouterIngredientRecette }
+
+pp_appli_menus:
+    path:    /user/menu/liste
+    defaults: { _controller: PPAppliBundle:Menu:liste }
+
+pp_appli_ajouterMenu:
+    path:    /user/menu/ajouter
+    defaults: { _controller: PPAppliBundle:Menu:ajouter }
+
+pp_appli_supprimerMenu:
+    path:    /user/menu/supprimer/{id}
+    defaults: { _controller: PPAppliBundle:Menu:supprimer }
+    requirements:
+        id:    \d+
+
+pp_appli_ajouterRecetteMenu:
+    path:    /user/menu/ajouterRecette/{id}
+    defaults: { _controller: PPAppliBundle:Menu:ajouterRecette }
+    requirements:
+        id:    \d+
+
+pp_appli_supprimerRecetteMenu:
+    path:    /user/menu/{id}/supprimerRecette/{idRecette}
+    defaults: { _controller: PPAppliBundle:Menu:supprimerRecette }
+    requirements:
+        id:    \d+
+
+pp_appli_editerRecettesMenu:
+    path:    /user/menu/editerRecettes/{id}
+    defaults: { _controller: PPAppliBundle:Menu:editerRecettes }
+    requirements:
+        id:    \d+
+
+pp_appli_listeIngredientsMenu:
+    path:    /user/menu/{id}/listeIngredient
+    defaults: { _controller: PPAppliBundle:Menu:listeIngredients }
+    requirements:
+        id:    \d+
+
+pp_appli_listeListe:
+    path:    /user/liste/liste
+    defaults: { _controller: PPAppliBundle:Liste:liste }

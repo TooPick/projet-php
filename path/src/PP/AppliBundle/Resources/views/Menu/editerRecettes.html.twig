@@ -1,0 +1,24 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Editer la liste des recettes du menu : {{ menu.nom }}</h3>
+	<a href="{{ path('pp_appli_menus') }}">Retour à la liste des menus</a>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Titre de la recette</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{% for recette in menu.recettes %}
+				<tr>
+					<td>{{ recette.rctTitre }}</td>
+					<td><a class="btn btn-primary" href="{{ path('pp_appli_recetteDetail', {id: recette.id}) }}">Voir</a> <a class="btn btn-danger" href="{{ path('pp_appli_supprimerRecetteMenu', {id: menu.id, idRecette: recette.id}) }}">Supprimer</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+{% endblock %}

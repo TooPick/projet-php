@@ -1,0 +1,18 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Ajouter un menu</h3>
+	<a href="{{ path('pp_appli_menus') }}">Retour à la liste des menus</a>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+
+		<div class="form-group">
+			{{ form_errors(form.nom) }}
+			{{ form_label(form.nom) }}
+			{{ form_widget(form.nom, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<center><input class="btn btn-primary" type="submit" value="Ajouter" /></center>
+	{{ form_end(form) }}
+	
+{% endblock %}

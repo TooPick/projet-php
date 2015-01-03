@@ -1,0 +1,42 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Edition d'un ingrédient</h3>
+	<a href="{{ path('pp_appli_listeIngredient') }}">Retour à la liste des ingrédients</a>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+
+		<div class="form-group">
+			{{ form_errors(form.igdLabel) }}
+			{{ form_label(form.igdLabel) }}
+			{{ form_widget(form.igdLabel, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(form.igdDescription) }}
+			{{ form_label(form.igdDescription) }}
+			{{ form_widget(form.igdDescription, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(form.igdIllustration.file) }}
+			{{ form_label(form.igdIllustration.file) }}
+			{{ form_widget(form.igdIllustration.file, {attr: {class: 'form-control'}}) }}
+			<hr />
+			<label>Prévisualisation :</label>
+			{% if ingredient.igdIllustration != NULL %}
+				<img src="{{ asset('uploads/images/' ~ ingredient.utilisateur.username ~ '/ingredients/' ~ ingredient.igdIllustration.id ~ '.' ~ ingredient.igdIllustration.url) }}" width='250'>
+			{% endif %}
+		</div>
+
+		<center><input class="btn btn-primary" type="submit" value="Enregistrer" /></center>
+		<br />
+
+	{{ form_end(form) }}
+
+	{% include "PPAppliBundle:Ingredient:modal.html.twig" %}
+	{% block javascripts %}
+		{% include "PPAppliBundle:Ingredient:modalJs.html.twig" %}
+	{% endblock %}
+	
+{% endblock %}

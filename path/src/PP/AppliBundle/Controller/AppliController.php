@@ -8,6 +8,7 @@ use PP\AppliBundle\Entity\Categorie;
 use PP\AppliBundle\Entity\Recette;
 use PP\AppliBundle\Entity\Commentaire;
 use PP\AppliBundle\Entity\Note;
+use PP\AppliBundle\Entity\Menu;
 
 use PP\AppliBundle\Form\RecetteType;
 use PP\AppliBundle\Form\CommentaireType;
@@ -95,6 +96,9 @@ class AppliController extends Controller
 		$noteRepository = $em->getRepository('PPAppliBundle:Note');
 		$noteUtilisateur = $noteRepository->findOneBy(array('recette' => $recette, 'utilisateur' => $this->getUser()));
 
+		$menuRepository = $em->getRepository('PPAppliBundle:Menu');
+		$menus = $menuRepository->findBy(array('utilisateur' => $this->getUser()));
+
 		$createur = ($this->getUser() == $recette->getUtilisateur());
 
 		$noteGenerale = $noteRepository->noteGenerale($recette);
@@ -143,7 +147,7 @@ class AppliController extends Controller
 	        }
 		}
 	
-		return $this->render('PPAppliBundle:Pages:recetteDetail.html.twig', array('recette' => $recette, 'form' => $form->createView(), 'commentaires' => $commentaires, 'noteForm' => $noteForm->createView(), 'noteUtilisateur' => $noteUtilisateur, 'createur' => $createur, 'noteGenerale' => $noteGenerale));
+		return $this->render('PPAppliBundle:Pages:recetteDetail.html.twig', array('recette' => $recette, 'form' => $form->createView(), 'commentaires' => $commentaires, 'noteForm' => $noteForm->createView(), 'noteUtilisateur' => $noteUtilisateur, 'createur' => $createur, 'noteGenerale' => $noteGenerale, 'menus' => $menus));
 	}
 
 	public function searchAction()
