@@ -28,7 +28,7 @@ class AppliController extends Controller
 		
 		$recettes = $recetteRepository->findBy(array('rctStatut' => 'finale'), array('rctDate' => 'DESC'));
 
-		$all = $recetteRepository->findBy(array('rctStatut' => 'finale'), array('rctDate' => 'DESC'));
+		$all = $recetteRepository->findAll();
 		$nbHasard = array_rand($all, 3);
 
 		$tab = array();
@@ -213,7 +213,7 @@ class AppliController extends Controller
 		
 		$recettes = $recetteRepository->findAll();
 		
-		$nombrePages = ceil(count($recettes)/9);
+		$nombrePages = ceil(count($populaire)/9);
 		if($page > $nombrePages)
 		{
 			$url = $this->generateUrl('pp_appli_populaire', array('page' => $nombrePages));
