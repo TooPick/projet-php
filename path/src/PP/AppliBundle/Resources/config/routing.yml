@@ -52,8 +52,10 @@ pp_appli_listeIngredient:
     defaults: { _controller: PPAppliBundle:Ingredient:liste }
 
 pp_appli_ajouterIngredient:
-    path:    /user/recette/ingredient/ajouter
-    defaults: { _controller: PPAppliBundle:Recette:ajouterIngredient }
+    path:    /user/ingredient/ajouter
+    defaults: { _controller: PPAppliBundle:Ingredient:ajouter }
+    requirements:
+        id:    \d+
 
 pp_appli_editionIngredient:
     path:    /user/ingredient/edit/{id}
@@ -61,9 +63,21 @@ pp_appli_editionIngredient:
     requirements:
         id:    \d+
 
+pp_appli_listeUnite:
+    path:    /user/unite/liste
+    defaults: { _controller: PPAppliBundle:Unite:liste }
+
 pp_appli_ajouterUnite:
     path:    /user/recette/unite/ajouter
-    defaults: { _controller: PPAppliBundle:Recette:ajouterUnite }
+    defaults: { _controller: PPAppliBundle:Unite:ajouter }
+    requirements:
+        id:    \d+
+
+pp_appli_editionUnite:
+    path:    /user/unite/edit/{id}
+    defaults: { _controller: PPAppliBundle:Unite:edition }
+    requirements:
+        id:    \d+
 
 pp_appli_ajouterIngredientRecette:
     path:    /user/recette/ajouterIngredient

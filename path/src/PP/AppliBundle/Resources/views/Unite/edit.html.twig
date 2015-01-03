@@ -1,0 +1,32 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Edition d'une unité</h3>
+	<a href="{{ path('pp_appli_listeUnite') }}">Retour à la liste des unités</a>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+
+		<div class="form-group">
+			{{ form_errors(form.uniLabel) }}
+			{{ form_label(form.uniLabel) }}
+			{{ form_widget(form.uniLabel, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(form.uniShortLabel) }}
+			{{ form_label(form.uniShortLabel) }}
+			{{ form_widget(form.uniShortLabel, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(form.uniDescription) }}
+			{{ form_label(form.uniDescription) }}
+			{{ form_widget(form.uniDescription, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<center><input class="btn btn-primary" type="submit" value="Enregistrer" /></center>
+		<br />
+
+	{{ form_end(form) }}
+	
+{% endblock %}

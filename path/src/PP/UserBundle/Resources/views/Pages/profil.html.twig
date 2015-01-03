@@ -29,6 +29,22 @@
 		</div>
 	</div>
 	<hr>
+	<h4 class="text-center">Gestion des ingrédients et des unités</h4>
+	<div class="row">
+		<div class="col-md-6 text-center">
+			<h4>Ingrédients</h4>
+			<a class="btn btn-success" href="{{ path('pp_appli_ajouterIngredient') }}">Nouveau</a>
+			<a class="btn btn-primary" href="{{ path('pp_appli_listeIngredient') }}">Mes ingrédients</a>
+		</div>
+
+		<div class="col-md-6 text-center">
+			<h4>Unités</h4>
+			<a class="btn btn-success" href="{{ path('pp_appli_ajouterUnite') }}">Nouveau</a>
+			<a class="btn btn-primary" href="{{ path('pp_appli_listeUnite') }}">Mes unités</a>
+		</div>
+	</div>
+
+	<hr>
 	<h4>Gérer mes recettes</h4>
 	
 	<table class="table table-striped">

@@ -1,0 +1,32 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+	<h3>Ajouter un ingrédient</h3>
+	<a href="{{ path('pp_user_profil') }}">Retour à la liste des ingrédients</a>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+
+		<div class="form-group">
+			{{ form_errors(form.igdLabel) }}
+			{{ form_label(form.igdLabel) }}
+			{{ form_widget(form.igdLabel, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(form.igdDescription) }}
+			{{ form_label(form.igdDescription) }}
+			{{ form_widget(form.igdDescription, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_errors(form.igdIllustration.file) }}
+			{{ form_label(form.igdIllustration.file) }}
+			{{ form_widget(form.igdIllustration.file, {attr: {class: 'form-control'}}) }}
+		</div>
+
+		<center><input class="btn btn-primary" type="submit" value="Enregistrer" /></center>
+		<br />
+
+	{{ form_end(form) }}
+	
+{% endblock %}

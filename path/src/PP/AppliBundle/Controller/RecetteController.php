@@ -120,35 +120,6 @@ class RecetteController extends Controller
 		return $this->redirect($url);
 	}
 
-	public function ajouterIngredientAction()
-	{
-		$ingredient = new Ingredient();
-		$ingredientForm = $this->createForm(new IngredientType, $ingredient);
-
-		$request = $this->getRequest();
-		if($request->getMethod() == "POST")
-		{
-			$ingredientForm->bind($request);
-			if($ingredientForm->isValid())
-			{
-				$em = $this->getDoctrine()->getManager();
-				$ingredient->setUtilisateur($this->getUser());
-				$ingredient->getIgdIllustration()->setType('ingredient');
-				$ingredient->getIgdIllustration()->setUtilisateur($this->getUser());
-				$em->persist($ingredient);
-				$em->flush();
-
-				$this->get('session')->getFlashBag()->add(
-                    'alert-success',
-                    'L\'ingrédient a bien été ajouté !'
-                );
-
-				$url = $this->generateUrl('pp_user_profil');
-				return $this->redirect($url);
-			}
-		}
-	}
-
 	public function ajouterUniteAction()
 	{
 		$unite = new Unite();

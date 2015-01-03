@@ -94,12 +94,6 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-12">
-			<a data-toggle="modal" data-target="#ingredientModal" class="btn btn-primary" href="">Créer un ingrédient</a> <a data-toggle="modal" data-target="#uniteModal" class="btn btn-primary" href="">Créer une unité</a>
-		</div>
-	</div>
-
-	<div class="row">
 		
 		<div class="form-group">
 			{{ form_label(form.ingredients) }}
@@ -111,46 +105,3 @@
 
 	<input class="btn btn-primary" type="submit" value="Enregistrer"/>
 {{ form_end(form) }}
-
-<div class="modal fade" id="ingredientModal" tabindex="-1" role="dialog" aria-labelledby="ingredientModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span> <span class="sr-only">Fermer</span></button>
-				<h4 class="modal-title" id="ingredientModalLabel">Ajouter un ingrédient</h4>
-			</div>
-
-			<div class="modal-body">
-				{% include "PPAppliBundle:Forms:ingredientForm.html.twig" %}
-			</div>
-
-			<div class="modal-footer">
-				
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="uniteModal" tabindex="-1" role="dialog" aria-labelledby="uniteModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span> <span class="sr-only">Fermer</span></button>
-				<h4 class="modal-title" id="uniteModalLabel">Ajouter une unité</h4>
-			</div>
-
-			<div class="modal-body">
-				{{ form(uniteForm) }}
-				<br />
-				<div class="text-right">
-					<button class="btn btn-default" data-dismiss="modal">Fermer</button>
-					<input type="submit" class="btn btn-success" data-loading-text="Patientez..." id="submitUnite" value="Ajouter" />
-				</div>
-			</div>
-
-			<div class="modal-footer">
-				
-			</div>
-		</div>
-	</div>
-</div>
