@@ -1,7 +1,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-	<h3>Populaire</h3>
+	<h3>Populaires</h3>
 	<hr>
 	{% for nb in populaire|slice((page*9)-9, page*9) %}
 		{% set recette = recettes[nb[1]-1] %}

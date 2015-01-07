@@ -1,0 +1,39 @@
+body{
+	background: #b8482b;
+}
+
+a{
+	color: #b8482b;
+}
+
+.btn-primary{
+	background-color: #b8482b;
+	border-color: #a64228;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary{
+	background-color: #a64228;
+	border-color: #863520;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #b8482b;
+  border-color: #a64228;
+}
+
+.container{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background: white;
+	border-radius: 20px;
+}
